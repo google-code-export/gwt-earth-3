@@ -25,5 +25,5 @@
 	height: 100%;
     }
 }}}
-  # Add [http://gwt-earth-3.googlecode.com/files/GwtEarth3-0.1.jar GwtEarth3-x.x.jar] to your project build path
+  # Add [http://code.google.com/p/gwt-earth-3/downloads/list GwtEarth3-x.x.jar] to your project build path
   # See [https://code.google.com/p/gwt-earth-3/source/browse/trunk/src/com/nitrous/gwt/earth/client/demo/EarthDemo.java EarthDemo.java] for an example of how to get started with the code.
