@@ -1,0 +1,11 @@
+#summary Setting up your GWT project to use gwt-earth-3
+
+=Getting Started=
+  # Visit [http://code.google.com/apis/maps/signup.html http://code.google.com/apis/maps/signup.html] to sign up for an Earth Key for your domain. For development purposes you can enter a host name of 'localhost'
+  # Add the following bootstrap code to the `<head>` of your GWT application host file:
+     <script src="http://www.google.com/jsapi?key=_your map key here_"></script>
+     <script type="text/javascript">
+        google.load("earth", "1");
+     </script>
+  # Add the following module import to your GWT module:  
+      <inherits name='com.nitrous.gwt.earth.GwtEarthAPI'/>
