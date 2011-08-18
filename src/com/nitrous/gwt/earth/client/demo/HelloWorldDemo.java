@@ -24,11 +24,12 @@ import com.nitrous.gwt.earth.client.api.GEPluginReadyListener;
 import com.nitrous.gwt.earth.client.api.GoogleEarthWidget;
 
 /**
- * The entry-point class for a simple demo of the Google Earth API GWT Wrapper
+ * This demo shows how to get the map displayed in your GWT application
+ * 
  * @author Nick
  *
  */
-public class EarthDemo implements EntryPoint {
+public class HelloWorldDemo implements EntryPoint {
 
     private GoogleEarthWidget earth;
 

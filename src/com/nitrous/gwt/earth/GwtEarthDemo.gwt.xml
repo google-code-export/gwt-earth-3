@@ -15,7 +15,7 @@
   <inherits name='com.nitrous.gwt.earth.GwtEarthAPI'/>
 
   <!-- Specify the app entry point class.                         -->
-  <entry-point class='com.nitrous.gwt.earth.client.demo.EarthDemo'/>
+  <entry-point class='com.nitrous.gwt.earth.client.demo.HelloWorldDemo'/>
 
   <!-- Specify the paths for translatable code                    -->
   <source path='client/demo'/>
