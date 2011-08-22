@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="gwt-earth-3" default="jar" basedir=".">
+	
+	<!-- Load properties -->
+	<property file="build.properties"/>
+	
+	<property name="jar.version" value="0.2"/>
+	
+	<!-- Arguments to gwtc and devmode targets -->
+	<property name="gwt.args" value="" />
+    <property name="gwt.style" value="OBF" />
+    
+	<property name="build.dir" location="${basedir}/build" />
+	<property name="class.dir" location="${build.dir}/classes" />
+	<property name="dist.dir" location="${build.dir}/dist" />
+	<property name="jar.file.name" value="GwtEarth3-${jar.version}.jar" />
+    <property name="jar.file.path" value="${build.dir}/${jar.file.name}" />
+	
+	<property name="gwt.module" value="com.nitrous.gwt.earth.GwtEarthDemo"/>
+	
+	<path id="project.class.path">
+		<pathelement location="${class.dir}" />
+		<pathelement location="${gwt.sdk}/gwt-user.jar" />
+		<fileset dir="${gwt.sdk}" includes="gwt-dev*.jar" />
+        <fileset dir="${gwt.sdk}" includes="validation-api*.jar" />
+	</path>
+
+	<target name="javac" description="Compile java source">
+		<mkdir dir="${class.dir}" />
+		<javac includes="**" encoding="utf-8" destdir="${class.dir}" source="1.5" target="1.5" nowarn="true" debug="true" debuglevel="lines,vars,source">
+			<src path="${basedir}/src" />
+			<src path="${basedir}/test" />
+			<classpath refid="project.class.path" />
+		</javac>
+		<copy todir="${class.dir}">
+			<fileset dir="src">
+				<exclude name="**/.svn/**"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="gwtc" depends="javac" description="GWT compile to JavaScript">
+		<echo>GWT Compile ${gwt.style} ${gwt.module}</echo>
+		<java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+			<classpath>
+				<pathelement location="src" />
+				<path refid="project.class.path" />
+			</classpath>
+			<!-- add jvmarg -Xss16M or similar if you see a StackOverflowError -->
+			<jvmarg value="-Xmx256M" />
+			<!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+			<arg line="${gwt.args}" />
+			<arg value="${gwt.module}" />
+            <arg line="-style" />
+            <arg value="${gwt.style}" />
+		</java>
+	</target>
+
+    <target name="quick-jar" depends="javac" description="Create a jar file with classes, source and property files">
+        <!-- create the war file -->
+        <jar destfile="${jar.file.path}" basedir="${class.dir}" />
+    </target>
+	
+    <target name="jar" depends="gwtc" description="Create a jar file with classes, source and property files">
+    	<!-- create the war file -->
+        <zip destfile="${jar.file.path}" basedir="${class.dir}" />
+    </target>
+    	
+	<target name="clean" description="Cleans this project">
+		<delete dir="${build.dir}" failonerror="false" />
+        <delete dir="${jar.file.path}" failonerror="false" />
+		<delete dir="war/WEB-INF/classes" failonerror="false" />
+	</target>
+
+</project>
