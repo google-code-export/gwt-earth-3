@@ -3,15 +3,17 @@
 	
 	<!-- Load properties -->
 	<property file="build.properties"/>
-		
+	
+	<property name="jar.version" value="0.2"/>
+	
 	<!-- Arguments to gwtc and devmode targets -->
 	<property name="gwt.args" value="" />
     <property name="gwt.style" value="OBF" />
-
+    
 	<property name="build.dir" location="${basedir}/build" />
 	<property name="class.dir" location="${build.dir}/classes" />
 	<property name="dist.dir" location="${build.dir}/dist" />
-	<property name="jar.file.name" value="GwtEarth3.jar" />
+	<property name="jar.file.name" value="GwtEarth3-${jar.version}.jar" />
     <property name="jar.file.path" value="${build.dir}/${jar.file.name}" />
 	
 	<property name="gwt.module" value="com.nitrous.gwt.earth.GwtEarthDemo"/>
