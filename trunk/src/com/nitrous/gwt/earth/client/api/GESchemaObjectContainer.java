@@ -70,7 +70,7 @@ public class GESchemaObjectContainer extends GESchemaObject {
 	 * @return Returns the old child.
 	 */
 	public final native KmlObject replaceChild(KmlObject newChild, KmlObject oldChild) /*-{
-		return this.replaceChild(newChild, refChild);
+		return this.replaceChild(newChild, oldChild);
 	}-*/;
 
 	/**
