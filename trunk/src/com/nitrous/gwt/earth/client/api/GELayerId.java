@@ -16,6 +16,11 @@
 package com.nitrous.gwt.earth.client.api;
 
 
+/**
+ * An enumeration of known google earth layer IDs
+ * @author nick
+ *
+ */
 public enum GELayerId {
     /**
      * The Layer ID of the terrain layer. Use as an argument to GEPlugin.getLayerById()

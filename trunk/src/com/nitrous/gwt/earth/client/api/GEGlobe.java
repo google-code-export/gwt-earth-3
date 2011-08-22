@@ -35,7 +35,8 @@ public class GEGlobe extends KmlObject {
 	 *            latitude
 	 * @param lon
 	 *            longitude
-	 * @return
+	 * @return Returns the altitude for a given location on the globe. If the altitude
+	 * data for the location has not yet been loaded, the return value is 0.
 	 */
 	public final native double getGroundAltitude(double lat, double lon) /*-{
 		return this.getGroundAltitude(lat, lon);

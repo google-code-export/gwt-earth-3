@@ -15,6 +15,9 @@
 	<property name="dist.dir" location="${build.dir}/dist" />
 	<property name="jar.file.name" value="GwtEarth3-${jar.version}.jar" />
     <property name="jar.file.path" value="${build.dir}/${jar.file.name}" />
+    <property name="javadoc.jar.file.name" value="GwtEarth3-${jar.version}-JavaDoc.zip" />
+    <property name="javadoc.jar.file.path" value="${build.dir}/${javadoc.jar.file.name}" />
+	<property name="javadoc.output.dir" value="${build.dir}/javadoc"/>
 	
 	<property name="gwt.module" value="com.nitrous.gwt.earth.GwtEarthDemo"/>
 	
@@ -25,6 +28,16 @@
         <fileset dir="${gwt.sdk}" includes="validation-api*.jar" />
 	</path>
 
+	<target name="javadoc" description="Generate JavaDoc">
+		<javadoc sourcepath="src" destdir="${javadoc.output.dir}" windowtitle="GWT-Earth-3-${jar.version}"
+			classpathref="project.class.path">
+		</javadoc>
+	</target>
+	<target name="package-javadoc" description="Generate and package the javadoc" depends="javadoc">
+		<delete dir="${javadoc.jar.file.path}" failonerror="false"/>
+        <zip destfile="${javadoc.jar.file.path}" basedir="${javadoc.output.dir}" />
+	</target>
+	
 	<target name="javac" description="Compile java source">
 		<mkdir dir="${class.dir}" />
 		<javac includes="**" encoding="utf-8" destdir="${class.dir}" source="1.5" target="1.5" nowarn="true" debug="true" debuglevel="lines,vars,source">

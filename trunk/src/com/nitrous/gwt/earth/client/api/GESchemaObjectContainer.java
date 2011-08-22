@@ -15,7 +15,6 @@
  */
 package com.nitrous.gwt.earth.client.api;
 
-
 /**
  * Holds one or more KML objects.
  * 
@@ -32,7 +31,8 @@ public class GESchemaObjectContainer extends GESchemaObject {
 	 * 
 	 * @param object
 	 *            The object to add to the container.
-	 * @return
+	 * @return Adds a node to the end of the list of children of a specified
+	 *         feature. Returns the appended object.
 	 */
 	public final native KmlObject appendChild(KmlObject object) /*-{
 		return this.appendChild(object);
@@ -43,7 +43,7 @@ public class GESchemaObjectContainer extends GESchemaObject {
 	 * 
 	 * @param oldChild
 	 *            child to be removed
-	 * @return
+	 * @return 
 	 */
 	public final native KmlObject removeChild(KmlObject oldChild) /*-{
 		return this.removeChild(oldChild);
@@ -58,7 +58,8 @@ public class GESchemaObjectContainer extends GESchemaObject {
 	 *            referenced child
 	 * @return
 	 */
-	public final native KmlObject insertBefore(KmlObject newChild, KmlObject refChild) /*-{
+	public final native KmlObject insertBefore(KmlObject newChild,
+			KmlObject refChild) /*-{
 		return this.insertBefore(newChild, refChild);
 	}-*/;
 
@@ -69,7 +70,8 @@ public class GESchemaObjectContainer extends GESchemaObject {
 	 * @param oldChild
 	 * @return Returns the old child.
 	 */
-	public final native KmlObject replaceChild(KmlObject newChild, KmlObject oldChild) /*-{
+	public final native KmlObject replaceChild(KmlObject newChild,
+			KmlObject oldChild) /*-{
 		return this.replaceChild(newChild, oldChild);
 	}-*/;
 

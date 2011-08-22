@@ -76,12 +76,8 @@ public class KmlAbstractView extends KmlObject {
 	}-*/;
 
 	/**
-	 * Returns the viewer options on the current view.
-	 * 
-	 * @return
-	 * @see GEPlugin.OPTION_STREET_VIEW
-	 * @see GEPlugin.OPTION_SUNLIGHT
-	 * @see GEPlugin.OPTION_HISTORICAL_IMAGERY
+	 * @return  Returns the viewer options on the current view.
+	 * see {@link GEViewerOptionsType}
 	 */
 	public final native KmlViewerOptions getViewerOptions() /*-{
 		return this.getViewerOptions();
@@ -89,11 +85,8 @@ public class KmlAbstractView extends KmlObject {
 
 	/**
 	 * Sets the viewer options on the current view.
-	 * 
+	 * see {@link GEViewerOptionsType}
 	 * @param viewerOptions
-	 * @see GEPlugin.OPTION_STREET_VIEW
-	 * @see GEPlugin.OPTION_SUNLIGHT
-	 * @see GEPlugin.OPTION_HISTORICAL_IMAGERY
 	 */
 	public final native void setViewerOptions(KmlViewerOptions viewerOptions) /*-{
 		this.setViewerOptions(viewerOptions);

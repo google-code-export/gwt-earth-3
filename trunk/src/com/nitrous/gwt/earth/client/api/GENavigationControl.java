@@ -30,7 +30,8 @@ public class GENavigationControl extends JavaScriptObject {
 	/**
 	 * Whether the control is always visible, always hidden, or visible only
 	 * when the user intends to use the control.
-	 * @return
+	 * @return Whether the control is always visible, always hidden, or visible only
+	 * when the user intends to use the control.
 	 */
 	private final native int getVisibilityNative() /*-{
 		return this.getVisibility();
@@ -39,7 +40,8 @@ public class GENavigationControl extends JavaScriptObject {
     /**
      * Whether the control is always visible, always hidden, or visible only
      * when the user intends to use the control.
-     * @return
+     * @return Whether the control is always visible, always hidden, or visible only
+     * when the user intends to use the control.
      */
     public final GEVisibility getVisibility() {
         return GEPluginConstants.get().toGEVisibility(getVisibilityNative());
