@@ -32,9 +32,7 @@ public class KmlMouseEvent extends KmlEvent {
 	/**
 	 * @return The button on the mouse was pressed. Possible values include 0,
 	 *         1, 2, where 0 is left, 1 is middle, and 2 is right mouse key.
-	 * @see {@link LEFT}
-	 * @see {@link MIDDLE}
-	 * @see {@link RIGHT}
+	 * see {@link #LEFT}, {@link #MIDDLE} and {@link #RIGHT}
 	 */
 	public final native int getButton() /*-{
 		return this.getButton();

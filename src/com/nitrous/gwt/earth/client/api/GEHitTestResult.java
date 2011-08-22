@@ -21,9 +21,7 @@ import com.google.gwt.core.client.JavaScriptObject;
  * This interface contains result information obtained by calling GEView's
  * hitTest method.
  * 
- * @see GEView.hitTest
  * @author Nick
- * 
  */
 public class GEHitTestResult extends JavaScriptObject {
     protected GEHitTestResult() {

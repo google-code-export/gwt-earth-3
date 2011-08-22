@@ -40,7 +40,7 @@ public class KmlLayerRoot extends KmlFolder {
     /**
      * Hide or show the layer associated with the specified ID.
      * 
-     * @param layerId
+     * @param layer
      *            The ID of the layer to hide or show.
      * @param visible
      *            True to show the layer, false to hide it.

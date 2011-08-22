@@ -48,7 +48,7 @@ public class GEAbstractBalloon extends JavaScriptObject {
 	/**
 	 * Determines what the balloon is attached to.
 	 * 
-	 * @return
+	 * @return The KmlFeature that the balloon is attached to.
 	 */
 	public final native KmlFeature getFeature() /*-{
 		return this.getFeature();
@@ -123,7 +123,7 @@ public class GEAbstractBalloon extends JavaScriptObject {
 	}-*/;
 
 	/**
-	 * 
+	 * Set the maximum height of the balloon.
 	 * @param maxHeight
 	 *            Maximum height of the balloon.
 	 */
@@ -136,7 +136,9 @@ public class GEAbstractBalloon extends JavaScriptObject {
 	 * click to close the balloon. When false, the balloon frame is just a plain
 	 * frame. Default is true.
 	 * 
-	 * @return
+	 * @return When true, the balloon frame is displayed with a button that the user can
+	 * click to close the balloon. When false, the balloon frame is just a plain
+	 * frame. Default is true.
 	 */
 	public final native boolean getCloseButtonEnabled() /*-{
 		return this.getCloseButtonEnabled();
@@ -147,7 +149,9 @@ public class GEAbstractBalloon extends JavaScriptObject {
 	 * click to close the balloon. When false, the balloon frame is just a plain
 	 * frame. Default is true.
 	 * 
-	 * @param closeButtonEnabled
+	 * @param closeButtonEnabled  When true, the balloon frame is displayed with a button that the user can
+	 * click to close the balloon. When false, the balloon frame is just a plain
+	 * frame. Default is true.
 	 */
 	public final native void setCloseButtonEnabled(boolean closeButtonEnabled) /*-{
 		this.setCloseButtonEnabled(closeButtonEnabled);
