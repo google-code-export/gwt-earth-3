@@ -16,6 +16,8 @@
 package com.nitrous.gwt.earth.client.api;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.event.shared.HandlerRegistration;
+import com.nitrous.gwt.earth.client.api.event.FrameEndListener;
 
 /**
  * The GEPlugin is the Google Earth Plugin's main object, and this is the object
@@ -734,6 +736,15 @@ public class GEPlugin extends JavaScriptObject {
 	}-*/;
 
 	/**
+	 * @return The speed that can be passed to getOptions().setFlyToSpeed() to indicate that
+	 *         fly-to should happen immediately, without a smooth transition.
+	 */
+	public final native double getFlyToSpeedTeleport() /*-{
+		return this.SPEED_TELEPORT;
+	}-*/;
+	
+	
+	/**
 	 * Hide or show the layer associated with the specified ID.
 	 * 
 	 * @param layer
@@ -769,6 +780,52 @@ public class GEPlugin extends JavaScriptObject {
 		return getLayerRoot().getLayerById(layerId);
 	}
 
+	/**
+	 * Listen for events that are fired when Earth has finished rendering the viewport. 
+	 * This event will be called many times in succession when the viewport is changing. 
+	 * Add a listener for this event and make incremental changes to the viewport for smooth animation.
+	 * 
+	 * @param listener The listener to be registered
+	 * @return The HandlerRegistration that can be used to remove the event listener
+	 */
+	public final HandlerRegistration addFrameEndListener(FrameEndListener listener) {
+		JavaScriptObject jsListener = doAddFrameEndListener(listener);
+		HandlerRegistration reg = new FrameEndHandlerRegistration(this, jsListener);
+		return reg;
+	}
+	
+	private final native JavaScriptObject doAddFrameEndListener(FrameEndListener listener) /*-{
+		// Call instance method onFrameEnd() on listener
+		var jsListener = function() {
+			listener.@com.nitrous.gwt.earth.client.api.event.FrameEndListener::onFrameEnd()();
+        };
+		$wnd.google.earth.addEventListener(this, 'frameend', jsListener);
+		return jsListener; 
+	}-*/;
+	
+	private static class FrameEndHandlerRegistration implements HandlerRegistration {
+		private JavaScriptObject jsHandler;
+		private GEPlugin plugin;
+		private FrameEndHandlerRegistration(GEPlugin plugin, JavaScriptObject jsHandler) {
+			this.jsHandler = jsHandler;
+			this.plugin = plugin;		
+		}
+		
+		@Override
+		public void removeHandler() {
+			if (plugin == null) {
+				return;
+			}
+			removeHandlerNative(plugin, jsHandler);
+			this.plugin = null;
+			this.jsHandler = null;
+		}
+		
+		private static native final void removeHandlerNative(JavaScriptObject ge, JavaScriptObject handler) /*-{
+			$wnd.google.earth.removeEventListener(ge, 'frameend', handler);			
+		}-*/;		
+	}
+	
 	/**
 	 * TODO: implement event handling methods
 	 * 
