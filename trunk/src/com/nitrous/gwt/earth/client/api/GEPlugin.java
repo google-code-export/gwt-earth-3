@@ -17,6 +17,7 @@ package com.nitrous.gwt.earth.client.api;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.nitrous.gwt.earth.client.api.event.BalloonListener;
 import com.nitrous.gwt.earth.client.api.event.FrameEndListener;
 
 /**
@@ -802,17 +803,31 @@ public class GEPlugin extends JavaScriptObject {
 		return jsListener; 
 	}-*/;
 	
-	
 	/**
-	 * TODO: implement event handling methods
-	 * 
-	 * <pre>
-	 * 		
-	 * 		void GEPlugin.balloonclose	(		 ) 	
-	 * 			Event fired when the current balloon is closed.
-	 * 		
-	 * 		void GEPlugin.balloonopening	(	KmlBalloonOpeningEvent 	event	 ) 	
-	 * 			Event fired when a balloon is about to open.
-	 * </pre>
+	 * Register a listener to be notified when balloons are opened and closed
+	 * @param listener The listener to be notified when balloons are opened and closed
+	 * @return The listener to be notified when balloons are opened and closed
 	 */
+	public final HandlerRegistration addBalloonListener(BalloonListener listener) {
+		JavaScriptObject openListener = doAddBalloonOpenListener(listener);
+		JavaScriptObject closeListener = doAddBalloonCloseListener(listener);
+		HandlerRegistration reg = new GEHandlerRegistration(this, 
+				new JavaScriptObject[]{openListener, closeListener}, 
+				new String[]{"balloonopening", "balloonclose"});
+		return reg;
+	}
+	private final native JavaScriptObject doAddBalloonOpenListener(BalloonListener listener) /*-{
+		var jsListener = function(event) {
+			listener.@com.nitrous.gwt.earth.client.api.event.BalloonListener::onBalloonOpening(Lcom/nitrous/gwt/earth/client/api/KmlBalloonOpeningEvent;)(event);
+        };
+		$wnd.google.earth.addEventListener(this, 'balloonopening', jsListener);
+		return jsListener; 
+	}-*/;
+	private final native JavaScriptObject doAddBalloonCloseListener(BalloonListener listener) /*-{
+		var jsListener = function(event) {
+			listener.@com.nitrous.gwt.earth.client.api.event.BalloonListener::onBalloonClose()();
+	    };
+		$wnd.google.earth.addEventListener(this, 'balloonclose', jsListener);
+		return jsListener; 
+	}-*/;
 }

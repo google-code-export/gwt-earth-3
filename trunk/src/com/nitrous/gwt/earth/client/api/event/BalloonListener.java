@@ -15,21 +15,22 @@
  */
 package com.nitrous.gwt.earth.client.api.event;
 
+import com.nitrous.gwt.earth.client.api.KmlBalloonOpeningEvent;
+
 /**
- * Listen for events that are fired when Earth has finished rendering the
- * viewport. This listener will be called many times in succession when the
- * viewport is changing. Register this event listener to the
- * <code>GEPlugin</code> and make incremental changes to the viewport for smooth
- * animation.
- * 
+ * Listen for balloon opening and closing events
  * @author nick
- * 
+ *
  */
-public interface FrameEndListener {
+public interface BalloonListener {
 	/**
-	 * Called many times in succession when the
-	 * viewport is changing. Make incremental changes to the viewport for
-	 * smooth animation.
+	 * Fired when the current balloon is closed
 	 */
-	void onFrameEnd();
+	void onBalloonClose();
+	
+	/**
+	 * Fired when a balloon is about to open
+	 * @param event The KmlBalloonOpeningEvent
+	 */
+	void onBalloonOpening(KmlBalloonOpeningEvent event);
 }

@@ -13,23 +13,29 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.nitrous.gwt.earth.client.api.event;
+package com.nitrous.gwt.earth.client.api;
+
 
 /**
- * Listen for events that are fired when Earth has finished rendering the
- * viewport. This listener will be called many times in succession when the
- * viewport is changing. Register this event listener to the
- * <code>GEPlugin</code> and make incremental changes to the viewport for smooth
- * animation.
- * 
+ * Fired when a description balloon is about to open. 
  * @author nick
- * 
+ *
  */
-public interface FrameEndListener {
+public class KmlBalloonOpeningEvent extends KmlEvent {
+	protected KmlBalloonOpeningEvent() {
+	}
+	
 	/**
-	 * Called many times in succession when the
-	 * viewport is changing. Make incremental changes to the viewport for
-	 * smooth animation.
+	 * @return The feature to which the opening balloon is attached.
 	 */
-	void onFrameEnd();
+	public final native KmlFeature getFeature() /*-{
+		return this.getFeature();
+	}-*/;
+	
+	/**
+	 * @return The balloon that triggered the event
+	 */
+	public final native GEAbstractBalloon getBalloon() /*-{
+		return this.getBalloon();
+	}-*/;
 }
