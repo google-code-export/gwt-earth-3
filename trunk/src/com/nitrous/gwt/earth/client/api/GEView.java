@@ -16,6 +16,8 @@
 package com.nitrous.gwt.earth.client.api;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.event.shared.HandlerRegistration;
+import com.nitrous.gwt.earth.client.api.event.ViewChangeListener;
 
 /**
  * Controls the behavior of the camera that views the scene in Google Earth.
@@ -199,5 +201,52 @@ public class GEView extends JavaScriptObject {
             nativeMode |= consts.toJavaScript(m);
         }
 		return this.hitTestNative(x, xUnit, y, yUnit, nativeMode);
-    };
+    }
+    
+    /**
+     * Register a listener to be notified when the view is changed
+     * @param listener The listener to be notified when the view is changed
+     * @return The HandlerRegistration that can be used to unregister the listener
+     */
+    public final HandlerRegistration addViewChangeListener(ViewChangeListener listener) {
+    	JavaScriptObject jsBeginListener = doAddViewChangeBeginListener(listener);
+    	JavaScriptObject jsChangeListener = doAddViewChangeListener(listener);
+    	JavaScriptObject jsEndListener = doAddViewChangeEndListener(listener);
+		HandlerRegistration reg = new GEHandlerRegistration(this, 
+				new JavaScriptObject[]{
+					jsBeginListener,
+					jsChangeListener,
+					jsEndListener
+				}, 
+				new String[]{
+					"viewchangebegin",
+					"viewchange",
+					"viewchangeend"
+				});
+		return reg;
+	}
+	private final native JavaScriptObject doAddViewChangeBeginListener(ViewChangeListener listener) /*-{
+		var jsListener = function() {
+			listener.@com.nitrous.gwt.earth.client.api.event.ViewChangeListener::onViewChangeBegin()();
+        };
+		$wnd.google.earth.addEventListener(this, 'viewchangebegin', jsListener);
+		return jsListener; 
+	}-*/;
+	private final native JavaScriptObject doAddViewChangeListener(ViewChangeListener listener) /*-{
+		var jsListener = function() {
+			listener.@com.nitrous.gwt.earth.client.api.event.ViewChangeListener::onViewChange()();
+	    };
+		$wnd.google.earth.addEventListener(this, 'viewchange', jsListener);
+		return jsListener; 
+	}-*/;
+	private final native JavaScriptObject doAddViewChangeEndListener(ViewChangeListener listener) /*-{
+		var jsListener = function() {
+			listener.@com.nitrous.gwt.earth.client.api.event.ViewChangeListener::onViewChangeEnd()();
+	    };
+		$wnd.google.earth.addEventListener(this, 'viewchangeend', jsListener);
+		return jsListener; 
+	}-*/;
+    
+    
+    
 }
