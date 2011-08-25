@@ -15,10 +15,12 @@
 	<inherits name='com.nitrous.gwt.earth.GwtEarthAPI' />
 
 	<!-- Specify the app entry point class.                         -->
-    <entry-point class='com.nitrous.gwt.earth.client.demo.FrameEndDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.BalloonListenerDemo'/> 
 
 <!-- 
     Available entry point demo classes: 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.BalloonListenerDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ClosingBalloonsDemo'/> 
     <entry-point class='com.nitrous.gwt.earth.client.demo.FrameEndDemo'/> 
     <entry-point class='com.nitrous.gwt.earth.client.demo.HelloWorldDemo'/> 
     <entry-point class='com.nitrous.gwt.earth.client.demo.ViewChangeDemo'/> 
