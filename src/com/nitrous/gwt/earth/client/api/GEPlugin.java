@@ -790,10 +790,9 @@ public class GEPlugin extends JavaScriptObject {
 	 */
 	public final HandlerRegistration addFrameEndListener(FrameEndListener listener) {
 		JavaScriptObject jsListener = doAddFrameEndListener(listener);
-		HandlerRegistration reg = new FrameEndHandlerRegistration(this, jsListener);
+		HandlerRegistration reg = new GEHandlerRegistration(this, jsListener, "frameend");
 		return reg;
 	}
-	
 	private final native JavaScriptObject doAddFrameEndListener(FrameEndListener listener) /*-{
 		// Call instance method onFrameEnd() on listener
 		var jsListener = function() {
@@ -803,35 +802,11 @@ public class GEPlugin extends JavaScriptObject {
 		return jsListener; 
 	}-*/;
 	
-	private static class FrameEndHandlerRegistration implements HandlerRegistration {
-		private JavaScriptObject jsHandler;
-		private GEPlugin plugin;
-		private FrameEndHandlerRegistration(GEPlugin plugin, JavaScriptObject jsHandler) {
-			this.jsHandler = jsHandler;
-			this.plugin = plugin;		
-		}
-		
-		@Override
-		public void removeHandler() {
-			if (plugin == null) {
-				return;
-			}
-			removeHandlerNative(plugin, jsHandler);
-			this.plugin = null;
-			this.jsHandler = null;
-		}
-		
-		private static native final void removeHandlerNative(JavaScriptObject ge, JavaScriptObject handler) /*-{
-			$wnd.google.earth.removeEventListener(ge, 'frameend', handler);			
-		}-*/;		
-	}
 	
 	/**
 	 * TODO: implement event handling methods
 	 * 
 	 * <pre>
-	 * 		void GEPlugin.frameend	(		 ) 	
-	 * 			Event fired when Earth has finished rendering the viewport. This event will be called many times in succession when the viewport is changing. Add a listener for this event and make incremental changes to the viewport for smooth animation.
 	 * 		
 	 * 		void GEPlugin.balloonclose	(		 ) 	
 	 * 			Event fired when the current balloon is closed.
