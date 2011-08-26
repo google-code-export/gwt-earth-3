@@ -4,7 +4,7 @@
 	<!-- Load properties -->
 	<property file="build.properties"/>
 	
-	<property name="jar.version" value="0.2"/>
+	<property name="jar.version" value="0.0"/>
 	
 	<!-- Arguments to gwtc and devmode targets -->
 	<property name="gwt.args" value="" />
