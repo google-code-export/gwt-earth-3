@@ -1,4 +1,5 @@
 #summary Setting up your GWT project to use gwt-earth-3
+#labels Featured
 
 =Getting Started=
   # Visit [http://code.google.com/apis/maps/signup.html http://code.google.com/apis/maps/signup.html] to sign up for an Earth Key for your domain. For development purposes you can enter a host name of 'localhost'
