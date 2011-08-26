@@ -1,5 +1,3 @@
-package com.nitrous.gwt.earth.client.demo;
-
 /*
  * Copyright 2011 Nick Kerr
  *
@@ -15,6 +13,8 @@ package com.nitrous.gwt.earth.client.demo;
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+package com.nitrous.gwt.earth.client.demo;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;

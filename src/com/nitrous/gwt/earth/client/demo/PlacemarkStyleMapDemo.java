@@ -16,51 +16,42 @@
 package com.nitrous.gwt.earth.client.demo;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.nitrous.gwt.earth.client.api.GEHtmlStringBalloon;
 import com.nitrous.gwt.earth.client.api.GELayerId;
 import com.nitrous.gwt.earth.client.api.GEPlugin;
 import com.nitrous.gwt.earth.client.api.GEPluginReadyListener;
 import com.nitrous.gwt.earth.client.api.GEVisibility;
 import com.nitrous.gwt.earth.client.api.GoogleEarthWidget;
 import com.nitrous.gwt.earth.client.api.KmlAltitudeMode;
-import com.nitrous.gwt.earth.client.api.KmlBalloonOpeningEvent;
+import com.nitrous.gwt.earth.client.api.KmlIcon;
 import com.nitrous.gwt.earth.client.api.KmlLookAt;
 import com.nitrous.gwt.earth.client.api.KmlPlacemark;
 import com.nitrous.gwt.earth.client.api.KmlPoint;
-import com.nitrous.gwt.earth.client.api.event.BalloonListener;
+import com.nitrous.gwt.earth.client.api.KmlStyle;
+import com.nitrous.gwt.earth.client.api.KmlStyleMap;
 
 /**
- * An extended version of the "closing ballons" demo that shows how to use a Balloon Listener.
- * 
- * The original JavaScript demo can be found here:
- * http://code.google.com/apis/ajax/playground/?exp=earth#closing_balloons
- * 
+ * A GWT implementation of the "Styling Placemarks using Style Maps" demo found
+ * here: http://code.google.com/apis/ajax/playground/#styling_placemarks_using_style_maps
  * 
  * @author nick
  * 
  */
-public class BalloonListenerDemo implements EntryPoint {
+public class PlacemarkStyleMapDemo implements EntryPoint {
 
 	private GoogleEarthWidget earth;
 	private KmlPlacemark placemark;
-	
-	// the timer that hides the status message
-	private Timer timer;
-	// the message showing the events
-	private Label message;
-	
+
 	public void onModuleLoad() {
 		// construct the UI widget
 		earth = new GoogleEarthWidget();
@@ -78,63 +69,60 @@ public class BalloonListenerDemo implements EntryPoint {
 			}
 		});
 
-		Button showButton = new Button("Show a balloon!");
-		showButton.addClickHandler(new ClickHandler() {
+		Button applyStyleButton = new Button("Give the Placemark a StyleMap!");
+		applyStyleButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				GEPlugin ge = earth.getGEPlugin();
-				GEHtmlStringBalloon balloon = ge.createHtmlStringBalloon("");
-				balloon.setFeature(placemark); // optional
-				balloon.setMaxWidth(300);
-
-				  // Google logo.
-				balloon.setContentString(
-				      "<img src=\"http://www.google.com/intl/en_ALL/images/logo.gif\"><br>"
-				      + "<font size=20>Earth Plugin</font><br><font size=-2>sample info "
-				      + "window</font>");
-				ge.setBalloon(balloon);
+				Scheduler.get().scheduleDeferred(new ScheduledCommand(){
+					@Override
+					public void execute() {
+						onButtonClick();
+					}
+				});
 			}
 		});
-		Button closeButton = new Button("Close the balloon!");
-		closeButton.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				// hide the balloon
-				earth.getGEPlugin().setBalloon(null);
-			}
-		});
-
-		message = new Label();
-		HorizontalPanel messageRow = new HorizontalPanel();
-		messageRow.add(message);
-		
 		HorizontalPanel buttons = new HorizontalPanel();
-		buttons.add(showButton);
-		buttons.add(closeButton);
-		
-		
-		VerticalPanel topPanel = new VerticalPanel();
+		buttons.add(applyStyleButton);
+
+		HorizontalPanel topPanel = new HorizontalPanel();
 		topPanel.setWidth("100%");
 		topPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		topPanel.add(buttons);
-		topPanel.add(messageRow);
 
 		DockLayoutPanel layout = new DockLayoutPanel(Unit.PX);
-		layout.addNorth(topPanel, 80D);
+		layout.addNorth(topPanel, 40D);
 		layout.add(earth);
 		RootLayoutPanel.get().add(layout);
 
-		// the timer that clears the message after a few seconds
-		timer = new Timer() {
-			@Override
-			public void run() {
-				message.setText("");
-			}
-		};
-
-
 		// begin loading the Google Earth Plug-in
 		earth.init();
+	}
+
+	private void onButtonClick() {
+		GEPlugin ge = earth.getGEPlugin();
+		KmlStyleMap styleMap = ge.createStyleMap("");
+
+		// Create normal style for style map
+		KmlStyle normalStyle = ge.createStyle("");
+		KmlIcon normalIcon = ge.createIcon("");
+		normalIcon.setHref("http://maps.google.com/mapfiles/kml/shapes/triangle.png");
+		normalStyle.getIconStyle().setIcon(normalIcon);
+
+		// Create highlight style for style map
+		KmlStyle highlightStyle = ge.createStyle("");
+		KmlIcon highlightIcon = ge.createIcon("");
+		highlightIcon.setHref("http://maps.google.com/mapfiles/kml/shapes/square.png");
+		highlightStyle.getIconStyle().setIcon(highlightIcon);
+
+		styleMap.setNormalStyle(normalStyle);
+		styleMap.setHighlightStyle(highlightStyle);
+
+		// Apply stylemap to a placemark
+		placemark.setStyleSelector(styleMap);
+		
+		// for some reason the placemark does not repaint, so force a repaint here
+		placemark.setVisibility(false);
+		placemark.setVisibility(true);
 	}
 
 	/**
@@ -148,7 +136,7 @@ public class BalloonListenerDemo implements EntryPoint {
 
 		// add a navigation control
 		ge.getNavigationControl().setVisibility(GEVisibility.VISIBILITY_AUTO);
-		
+
 		// add some layers
 		ge.enableLayer(GELayerId.LAYER_BORDERS, true);
 		ge.enableLayer(GELayerId.LAYER_ROADS, true);
@@ -164,37 +152,14 @@ public class BalloonListenerDemo implements EntryPoint {
 		// add the placemark to the earth DOM
 		ge.getFeatures().appendChild(placemark);
 
-		  // look at the placemark we created
+		// look at the placemark we created
 		KmlLookAt la = ge.createLookAt("");
-		la.set(37, -122,
-		    0, // altitude
-		    KmlAltitudeMode.ALTITUDE_RELATIVE_TO_GROUND,
-		    0, // heading
-		    0, // straight-down tilt
-		    5000 // range (inverse of zoom)
-		    );
+		la.set(37, -122, 0, // altitude
+				KmlAltitudeMode.ALTITUDE_RELATIVE_TO_GROUND, 0, // heading
+				0, // straight-down tilt
+				5000 // range (inverse of zoom)
+				);
 		ge.getView().setAbstractView(la);
-		
-		// register the balloon event listener
-		ge.addBalloonListener(new BalloonListener(){
-
-			@Override
-			public void onBalloonClose() {
-				timer.cancel();
-				message.setText("Balloon close event received");
-				// hide the message after 2 seconds
-				timer.schedule(2000);
-			}
-
-			@Override
-			public void onBalloonOpening(KmlBalloonOpeningEvent event) {
-				timer.cancel();
-				message.setText("Balloon open event received");
-				// hide the message after 2 seconds
-				timer.schedule(2000);
-			}
-			
-		});
 	}
 
 }
