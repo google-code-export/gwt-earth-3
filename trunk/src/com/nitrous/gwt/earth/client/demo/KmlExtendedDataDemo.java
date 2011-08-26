@@ -43,7 +43,6 @@ import com.nitrous.gwt.earth.client.api.event.MouseClickListener;
 public class KmlExtendedDataDemo implements EntryPoint {
 
 	private GoogleEarthWidget earth;
-	private KmlPlacemark placemark;
 	
 	public void onModuleLoad() {
 		// construct the UI widget
