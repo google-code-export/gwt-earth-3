@@ -21,10 +21,15 @@ import java.util.List;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.DockLayoutPanel;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SplitLayoutPanel;
@@ -52,6 +57,8 @@ public class MouseListenerDemo implements EntryPoint {
 	private ListDataProvider<MouseEventInfo> dataProvider;
 	private DateTimeFormat dateTimeFormat = DateTimeFormat.getFormat("HH:mm:ss.SSSS");
 	private ScrollPanel scrollPanel;
+	private HTML mouseLocation;
+	
 	public void onModuleLoad() {
 		// the table that will be used to render mouse event information
 		table = new CellTable<MouseEventInfo>();
@@ -111,18 +118,34 @@ public class MouseListenerDemo implements EntryPoint {
 		scrollPanel = new ScrollPanel();
 		scrollPanel.setHeight("100%");
 		scrollPanel.add(table);
-        
+
+		HorizontalPanel header = new HorizontalPanel();
+		header.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		mouseLocation = new HTML("");
+		header.add(mouseLocation);
+		
         SplitLayoutPanel split = new SplitLayoutPanel();
         split.addWest(scrollPanel, 450);
         split.add(earth);
 
-        // add the layout to the HTML document
-        RootLayoutPanel.get().add(split);
+		DockLayoutPanel dockLayout = new DockLayoutPanel(Unit.PX);
+		dockLayout.addNorth(header, 30D);
+		dockLayout.add(split);
+        RootLayoutPanel.get().add(dockLayout);
         
 		// begin loading the Google Earth Plug-in
 		earth.init();
 	}
 
+	private void showMouseLocation(KmlMouseEvent event) {
+       String text = 
+		     "<b>Mouse Location:</b> X="+event.getClientX()
+		   + " Y="+event.getClientY()
+    	   + " Latitude="+event.getLatitude()
+		   + " Longitude="+event.getLongitude();
+       mouseLocation.setHTML(text);		
+	}
+	
 	private void addEvent(MouseEventInfo info) {
 		List<MouseEventInfo> list = dataProvider.getList();
 		list.add(info);
@@ -160,36 +183,43 @@ public class MouseListenerDemo implements EntryPoint {
 		ge.getGlobe().addMouseListener(new MouseListener(){
 			@Override
 			public void onClick(KmlMouseEvent event) {
+				showMouseLocation(event);
 				addEvent(new MouseEventInfo("Click", event, new Date(System.currentTimeMillis())));;
 			}
 
 			@Override
 			public void onDoubleClick(KmlMouseEvent event) {
+				showMouseLocation(event);
 				addEvent(new MouseEventInfo("Double Click", event, new Date(System.currentTimeMillis())));;
 			}
 
 			@Override
 			public void onMouseDown(KmlMouseEvent event) {
+				showMouseLocation(event);
 				addEvent(new MouseEventInfo("Mouse Down", event, new Date(System.currentTimeMillis())));;
 			}
 
 			@Override
 			public void onMouseUp(KmlMouseEvent event) {
+				showMouseLocation(event);
 				addEvent(new MouseEventInfo("Mouse Up", event, new Date(System.currentTimeMillis())));;
 			}
 
 			@Override
 			public void onMouseMove(KmlMouseEvent event) {
-				addEvent(new MouseEventInfo("Mouse Move", event, new Date(System.currentTimeMillis())));;
+				showMouseLocation(event);
+				// dont show this in the table as its too busy
 			}
 
 			@Override
 			public void onMouseOut(KmlMouseEvent event) {
+				showMouseLocation(event);
 				addEvent(new MouseEventInfo("Mouse Out", event, new Date(System.currentTimeMillis())));;
 			}
 
 			@Override
 			public void onMouseOver(KmlMouseEvent event) {
+				showMouseLocation(event);
 				addEvent(new MouseEventInfo("Mouse Over", event, new Date(System.currentTimeMillis())));;
 			}
 		});
