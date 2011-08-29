@@ -1,2 +1,5 @@
 # Path to the GWT SDK
-gwt.sdk=C:/gwt-2.3.0
+gwt.sdk=/Users/nick/work/java/GWT/gwt-2.4.0-rc1
+
+# Build version
+jar.version=0.3
