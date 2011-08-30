@@ -1,11 +1,12 @@
 package com.nitrous.gwt.earth.client.api.event;
 
+import com.nitrous.gwt.earth.client.api.GoogleEarth;
 import com.nitrous.gwt.earth.client.api.KmlObject;
 
 /**
  * A listener that can be notified when a KmlFeature has loaded.
  * 
- * @see {@code GoogleEarth#fetchKml(com.nitrous.gwt.earth.client.api.GEPlugin, String, com.nitrous.gwt.earth.client.api.function)}
+ * @see GoogleEarth#fetchKml(com.nitrous.gwt.earth.client.api.GEPlugin, String, KmlLoadCallback)
  * @author Nick
  */
 public interface KmlLoadCallback {

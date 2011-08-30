@@ -185,8 +185,8 @@ public final class GoogleEarth {
      * 
      * Note: The HTML DOM must be loaded before this method can be called.
      * 
-     * @param domNode
-     *            The DOM element itself (usually a <div>) that will contain the
+     * @param elementId
+     *            The ID of the DOM element (usually a <div>) that will contain the
      *            plug-in instance or error message.
      * @param options
      *            (optional) A JavaScript object literal (i.e, <code>{ option1:

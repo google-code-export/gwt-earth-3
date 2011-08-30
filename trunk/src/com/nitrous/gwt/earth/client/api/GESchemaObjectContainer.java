@@ -43,7 +43,7 @@ public class GESchemaObjectContainer extends GESchemaObject {
 	 * 
 	 * @param oldChild
 	 *            child to be removed
-	 * @return 
+	 * @return  
 	 */
 	public final native KmlObject removeChild(KmlObject oldChild) /*-{
 		return this.removeChild(oldChild);
@@ -56,7 +56,7 @@ public class GESchemaObjectContainer extends GESchemaObject {
 	 *            new child to insert
 	 * @param refChild
 	 *            referenced child
-	 * @return
+	 * @return 
 	 */
 	public final native KmlObject insertBefore(KmlObject newChild,
 			KmlObject refChild) /*-{

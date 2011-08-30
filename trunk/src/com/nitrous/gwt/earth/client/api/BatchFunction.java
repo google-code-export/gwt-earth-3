@@ -8,7 +8,7 @@ package com.nitrous.gwt.earth.client.api;
  * useful for batching together a large set of calls to the Earth API, for
  * example, a large number of consecutive calls to KmlCoordArray.pushLatLngAlt.
  * 
- * @see {@code GoogleEarth#executebatch}
+ * @see GoogleEarth#executeBatch(GEPlugin, BatchFunction)
  * @author Nick
  * 
  */
