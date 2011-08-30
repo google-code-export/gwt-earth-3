@@ -21,9 +21,7 @@ import java.util.Map;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
-import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
@@ -37,7 +35,10 @@ public class GoogleEarthWidget extends Widget {
 	private static int id = 0;
 	private GEPlugin gePlugin;
 	private ArrayList<GEPluginReadyListener> pluginReadyListeners = new ArrayList<GEPluginReadyListener>();
-	
+
+	/**
+	 * Constructor
+	 */
 	public GoogleEarthWidget() {
 		HTML html = new HTML(
 				"<div class='map3dcontainer' id='map3dcontainer" + id + "'>" + 
@@ -49,7 +50,17 @@ public class GoogleEarthWidget extends Widget {
 	 * Begin loading the Google Earth Plugin
 	 */
 	public void init() {
-		jsInitGE(id);
+        GoogleEarth.createInstance("map3d"+id, new GoogleEarthInitListener() {
+            @Override
+            public void onSuccess(GEPlugin plugin) {
+                onInitSuccess(plugin);
+            }
+            
+            @Override
+            public void onFailure(String cause) {
+                onInitFailure(cause);
+            }
+        });
 	}
 	
 	/**
@@ -90,18 +101,17 @@ public class GoogleEarthWidget extends Widget {
 	 * </pre> 
 	 */
 	public void init(Map<String, String> initParams) {
-		if (initParams != null && initParams.size() > 0) {
-			JSONObject obj = new JSONObject();
-			for (Map.Entry<String, String> param : initParams.entrySet()) {
-				String value = param.getValue();
-				if (value != null && value.trim().length() > 0) {
-					obj.put(param.getKey(), new JSONString(param.getValue()));
-				}
-			}
-			init(obj);
-		} else {
-			init();
-		}
+        GoogleEarth.createInstance("map3d"+id, initParams, new GoogleEarthInitListener() {
+            @Override
+            public void onSuccess(GEPlugin plugin) {
+                onInitSuccess(plugin);
+            }
+            
+            @Override
+            public void onFailure(String cause) {
+                onInitFailure(cause);
+            }
+        });
 	}
 	
 	/**
@@ -121,7 +131,17 @@ public class GoogleEarthWidget extends Widget {
 	public void init(JSONValue jsonInitParams) {
 		String str = jsonInitParams.toString();
 		JavaScriptObject json = toJson(str);
-		jsInitGE(id, json);	
+        GoogleEarth.createInstance("map3d"+id, json, new GoogleEarthInitListener() {
+            @Override
+            public void onSuccess(GEPlugin plugin) {
+                onInitSuccess(plugin);
+            }
+            
+            @Override
+            public void onFailure(String cause) {
+                onInitFailure(cause);
+            }
+        });
 	}
 	
 	/**
@@ -166,48 +186,4 @@ public class GoogleEarthWidget extends Widget {
 	public GEPlugin getGEPlugin() {
 		return gePlugin;
 	}
-		
-	private native void jsInitGE(int id) /*-{
-		var ge;
-		var instance = this;
-		function initCB(obj) {
-  			ge = obj;
-  			ge.getWindow().setVisibility(true);
-		  	instance.@com.nitrous.gwt.earth.client.api.GoogleEarthWidget::onInitSuccess(Lcom/nitrous/gwt/earth/client/api/GEPlugin;)(ge);
-		}
-		function failureCB(err) {
-		  	instance.@com.nitrous.gwt.earth.client.api.GoogleEarthWidget::onInitFailure(Ljava/lang/String;)(err);
-		}
-  		$wnd.google.earth.createInstance($doc.getElementById("map3d" + id), initCB, failureCB);
-	}-*/;
-	
-	/**
-	 * An alternative initialization method for the Google Earth Plugin that allows us to pass in arguments to configure the map database and language support.
-	 * @param id The ID of the element into which the plugin is to be inserted.
-	 * @param args The arguments used to configure the google earth plugin.
-	 * <pre>
-	 * Supported arguments are: 
-	 * <li>database - The URL of an alternative Earth Enterprise database to connect to instead of the default database.
-	 * Note: Certain changes may be required to your Google Earth Server configuration before Google Earth Plugin instances will be able to connect to it using this method. Google Earth Server versions 3.2 and higher are already pre-configured for connectivity with the plugin. Contact Google Earth Enterprise support for more details.
-	 * Note: Keep in mind the Google Earth API Terms of Service while using this parameter.</li>
-	 * 
-	 * <li>language - The language code specifying the language to use for road and border labels, 
-	 * Terms of Use text, and error messages.
-	 * Supported language codes are listed in the Google Maps API Coverage document.</li>
-	 * </pre> 
-	 */
-	private native void jsInitGE(int id, JavaScriptObject args) /*-{
-		var ge;
-		var instance = this;
-		function initCB(obj) {
-				ge = obj;
-				ge.getWindow().setVisibility(true);
-		  	instance.@com.nitrous.gwt.earth.client.api.GoogleEarthWidget::onInitSuccess(Lcom/nitrous/gwt/earth/client/api/GEPlugin;)(ge);
-		}
-		function failureCB(err) {
-		  	instance.@com.nitrous.gwt.earth.client.api.GoogleEarthWidget::onInitFailure(Ljava/lang/String;)(err);
-		}
-		$wnd.google.earth.createInstance($doc.getElementById("map3d" + id), initCB, failureCB, args);
-	}-*/;
-	
 }

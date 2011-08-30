@@ -23,14 +23,18 @@ import com.nitrous.gwt.earth.client.api.GEPlugin;
 import com.nitrous.gwt.earth.client.api.GEPluginReadyListener;
 import com.nitrous.gwt.earth.client.api.GEVisibility;
 import com.nitrous.gwt.earth.client.api.GoogleEarthWidget;
+import com.nitrous.gwt.earth.client.api.KmlAltitudeMode;
+import com.nitrous.gwt.earth.client.api.KmlLookAt;
+import com.nitrous.gwt.earth.client.api.KmlObject;
+import com.nitrous.gwt.earth.client.api.event.KmlLoadCallback;
 
 /**
- * This demo shows how to get the map displayed in your GWT application
+ * A GWT implementation of the demo found here: http://code.google.com/apis/ajax/playground/#fetch_good_kml
  * 
  * @author Nick
  *
  */
-public class HelloWorldDemo implements EntryPoint {
+public class FetchGoodKmlDemo implements EntryPoint {
 
     private GoogleEarthWidget earth;
 
@@ -70,14 +74,25 @@ public class HelloWorldDemo implements EntryPoint {
         ge.getNavigationControl().setVisibility(GEVisibility.VISIBILITY_AUTO);
         
         // show some layers
-        ge.enableLayer(GELayerId.LAYER_BUILDINGS, true);
         ge.enableLayer(GELayerId.LAYER_BORDERS, true);
         ge.enableLayer(GELayerId.LAYER_ROADS, true);
-        ge.enableLayer(GELayerId.LAYER_TERRAIN, true);
-        ge.enableLayer(GELayerId.LAYER_TREES, true);
 
-        // show an over-view pane
-        ge.getOptions().setOverviewMapVisibility(true);
+        // fetch the KML
+        String url = "http://sketchup.google.com/3dwarehouse/download?mid=28b27372e2016cca82bddec656c63017&rtyp=k2";
+        ge.fetchKml(url, new KmlLoadCallback(){
+            @Override
+            public void onLoaded(KmlObject feature) {
+                if (feature == null) {
+                   Window.alert("Bad or null KML");
+                   return;
+                }
+                
+                GEPlugin ge = earth.getGEPlugin();
+                ge.getFeatures().appendChild(feature);
+                KmlLookAt la = ge.createLookAt("");
+                la.set(37.77976, -122.418307, 25, KmlAltitudeMode.ALTITUDE_RELATIVE_TO_GROUND, 180, 60, 500);
+                ge.getView().setAbstractView(la);
+            }
+        });
     }
-
 }

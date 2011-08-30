@@ -19,6 +19,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.nitrous.gwt.earth.client.api.event.BalloonListener;
 import com.nitrous.gwt.earth.client.api.event.FrameEndListener;
+import com.nitrous.gwt.earth.client.api.event.KmlLoadCallback;
 
 /**
  * The GEPlugin is the Google Earth Plugin's main object, and this is the object
@@ -830,4 +831,50 @@ public class GEPlugin extends JavaScriptObject {
 		$wnd.google.earth.addEventListener(this, 'balloonclose', jsListener);
 		return jsListener; 
 	}-*/;
+	
+    /**
+     * Retrieves and parses a KML or KMZ file at the given URL and returns an
+     * instance of a KmlFeature-derived class representing the parsed KML object
+     * model.
+     * 
+     * Note: This method does not display the feature on the Earth. See below
+     * for more information.
+     * 
+     * @param url
+     *            The URL at which the KML or KMZ content is posted. This URL
+     *            should serve either the <a href="http://code.google.com/apis/kml/documentation/kml_tut.html#kml_server">KML or KMZ content type</a>.
+     * @param callback
+     *            A callback that will be called with an instance of a
+     *            KmlFeature-derived class upon
+     *            successful fetching/parsing of the KML or KMZ content. If an
+     *            error occurs, this function will be passed a null value.
+     * 
+     *            Note: In this callback, you can display the loaded KML in
+     *            Earth by calling ge.getFeatures().appendChild(feature),
+     *            assuming 'ge' is the GEPlugin instance variable in the
+     *            callback function's scope and 'feature' is object received by the callback.
+     */
+    public final void fetchKml(String url, KmlLoadCallback callback) {
+        GoogleEarth.fetchKml(this,  url, callback);
+    }
+
+    /**
+     * Efficiently executes an arbitrary, user-defined function (the batch
+     * function), minimizing the amount of overhead incurred during
+     * cross-process communication between the web browser and Google Earth
+     * Plugin. This method is useful for batching together a large set of calls
+     * to the Earth API, for example, a large number of consecutive calls to
+     * KmlCoordArray.pushLatLngAlt.
+     * 
+     * Note: This method is guaranteed to run synchronously; that is,
+     * executeBatch blocks and does not return until the batch function has
+     * completed. In fact there should be no difference between calling
+     * executeBatch(fn) and fn() besides execution performance.
+     * 
+     * @param batchFunction The function containing the code to be executed. 
+     */
+    public final void executeBatch(BatchFunction batchFunction) {
+        GoogleEarth.executeBatch(this, batchFunction);
+    }
+    
 }

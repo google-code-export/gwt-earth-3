@@ -28,7 +28,7 @@ public class KmlExtrudableGeometry extends KmlAltitudeGeometry {
      * Specifies whether to connect the geometry to the ground.
      * @return
      */
-    protected final native boolean getExtrude() /*-{
+    public final native boolean getExtrude() /*-{
         return this.getExtrude();
     }-*/;
 
@@ -36,7 +36,7 @@ public class KmlExtrudableGeometry extends KmlAltitudeGeometry {
      * 
      * @param extrude Specifies whether to connect the geometry to the ground.
      */
-    protected final native void setExtrude(boolean extrude) /*-{
+    public final native void setExtrude(boolean extrude) /*-{
         this.setExtrude(extrude);
     }-*/;
 
@@ -44,7 +44,7 @@ public class KmlExtrudableGeometry extends KmlAltitudeGeometry {
      * Specifies whether to allow the geometry to follow the terrain elevation.
      * @return 
      */
-    protected final native boolean getTessellate() /*-{
+    public final native boolean getTessellate() /*-{
         return this.getTessellate();
     }-*/;
 
@@ -52,7 +52,7 @@ public class KmlExtrudableGeometry extends KmlAltitudeGeometry {
      * Specifies whether to allow the geometry to follow the terrain elevation.
      * @param tessellate
      */
-    protected final native void setTessellate(boolean tessellate) /*-{
+    public final native void setTessellate(boolean tessellate) /*-{
         this.setTessellate(tessellate);
     }-*/;
 
