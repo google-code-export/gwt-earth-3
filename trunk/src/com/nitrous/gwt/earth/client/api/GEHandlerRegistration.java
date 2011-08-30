@@ -57,21 +57,12 @@ class GEHandlerRegistration implements HandlerRegistration {
 			return;
 		}
 		for (int i = 0 ; i < jsHandler.length; i++) {
-			removeHandlerNative(host, eventType[i], jsHandler[i]);
+			GoogleEarth.removeHandlerNative(host, eventType[i], jsHandler[i]);
 		}
 		this.host = null;
 		this.jsHandler = null;
 		this.eventType = null;
 	}
 
-	/**
-	 * Unregister the specified handler from the specified host for the specified event type
-	 * @param host The host to which the specified handler was registered
-	 * @param eventType The event type to be un-subscribed
-	 * @param handler The registered handler to be removed
-	 */
-	private native final void removeHandlerNative(JavaScriptObject host, String eventType, JavaScriptObject handler) /*-{
-		$wnd.google.earth.removeEventListener(host, eventType, handler);			
-	}-*/;		
 }
 
