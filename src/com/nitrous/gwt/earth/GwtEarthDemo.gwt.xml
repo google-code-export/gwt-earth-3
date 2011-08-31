@@ -15,10 +15,14 @@
 	<inherits name='com.nitrous.gwt.earth.GwtEarthAPI' />
 
 	<!-- Specify the app entry point class.                         -->
-    <entry-point class='com.nitrous.gwt.earth.client.demo.ExecuteBatchDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ParseKmlInteractive'/>   
 
 <!-- 
     Available entry point demo classes: 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ParseKmlInteractive'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.TimeAwareKmlDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.FetchKmlInteractiveCheckboxes'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.FetchKmlInteractive'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.ExecuteBatchDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.FetchBadKmlDemo'/> 
     <entry-point class='com.nitrous.gwt.earth.client.demo.FetchGoodKmlDemo'/> 
