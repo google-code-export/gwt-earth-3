@@ -16,6 +16,8 @@
 package com.nitrous.gwt.earth.client.demo;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.nitrous.gwt.earth.client.api.GELayerId;
@@ -83,8 +85,14 @@ public class FetchGoodKmlDemo implements EntryPoint {
             @Override
             public void onLoaded(KmlObject feature) {
                 if (feature == null) {
-                   Window.alert("Bad or null KML");
-                   return;
+                    // defer display of alert to prevent deadlock in some browsers
+                    Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+                        @Override
+                        public void execute() {
+                            Window.alert("Bad or null KML.");
+                        }
+                    });
+                    return;
                 }
                 
                 GEPlugin ge = earth.getGEPlugin();

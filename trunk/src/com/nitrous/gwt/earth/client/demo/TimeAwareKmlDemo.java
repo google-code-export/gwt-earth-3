@@ -16,8 +16,6 @@
 package com.nitrous.gwt.earth.client.demo;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.nitrous.gwt.earth.client.api.GELayerId;
@@ -28,15 +26,14 @@ import com.nitrous.gwt.earth.client.api.GoogleEarthWidget;
 import com.nitrous.gwt.earth.client.api.KmlAltitudeMode;
 import com.nitrous.gwt.earth.client.api.KmlLookAt;
 import com.nitrous.gwt.earth.client.api.KmlObject;
-import com.nitrous.gwt.earth.client.api.event.KmlLoadCallback;
 
 /**
- * A GWT implementation of the demo found here: http://code.google.com/apis/ajax/playground/#fetch_bad_kml
+ * A GWT implementation of the demo found here: http://code.google.com/apis/ajax/playground/#showing_time_ui_by_parsing_time-aware_kml
  * 
  * @author Nick
  *
  */
-public class FetchBadKmlDemo implements EntryPoint {
+public class TimeAwareKmlDemo implements EntryPoint {
 
     private GoogleEarthWidget earth;
 
@@ -76,32 +73,53 @@ public class FetchBadKmlDemo implements EntryPoint {
         ge.getNavigationControl().setVisibility(GEVisibility.VISIBILITY_AUTO);
         
         // show some layers
+        ge.enableLayer(GELayerId.LAYER_BUILDINGS, true);
         ge.enableLayer(GELayerId.LAYER_BORDERS, true);
-        ge.enableLayer(GELayerId.LAYER_ROADS, true);
 
-        // in this sample we will purposely attempt
-        // to fetch a bad KML file (one that doesnt exist)
-        String url = "http://www.google.com/fakePlacemark.kml";
-        ge.fetchKml(url, new KmlLoadCallback(){
-            @Override
-            public void onLoaded(KmlObject feature) {
-                if (feature == null) {
-                    // defer display of alert to prevent deadlock in some browsers
-                    Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-                        @Override
-                        public void execute() {
-                            Window.alert("Bad or null KML.");
-                        }
-                    });
-                    return;
-                }
-                
-                GEPlugin ge = earth.getGEPlugin();
-                ge.getFeatures().appendChild(feature);
-                KmlLookAt la = ge.createLookAt("");
-                la.set(37.77976, -122.418307, 25, KmlAltitudeMode.ALTITUDE_RELATIVE_TO_GROUND, 180, 60, 500);
-                ge.getView().setAbstractView(la);
-            }
-        });
+        // Sample KML taken from
+        // http://code.google.com/apis/kml/documentation/kml_tut.html#polygons
+        KmlObject timeAwareDoc = ge.parseKml(
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+            "<kml xmlns=\"http://www.opengis.net/kml/2.2\">" +
+            "  <Document>" +
+            "    <Placemark>" +
+            "      <name>Placemark 1</name>" +
+            "      <TimeSpan>" +
+            "        <begin>2007-01-14T21:05:02Z</begin>" +
+            "        <end>2007-01-14T21:05:20Z</end>" +
+            "      </TimeSpan>" +
+            "      <Point>" +
+            "        <coordinates>-122.536226,37.86047,0</coordinates>" +
+            "      </Point>" +
+            "    </Placemark>" +
+            "    <Placemark>" +
+            "      <name>Placemark 2</name>" +
+            "      <TimeSpan>" +
+            "        <begin>2007-01-14T21:05:20Z</begin>" +
+            "        <end>2007-01-14T21:05:43Z</end>" +
+            "      </TimeSpan>" +
+            "      <Point>" +
+            "        <coordinates>-122.536422,37.860303,0</coordinates>" +
+            "      </Point>" +
+            "    </Placemark>" +
+            "    <Placemark>" +
+            "      <name>Placemark 3</name>" +
+            "      <TimeSpan>" +
+            "        <begin>2007-01-14T21:05:43Z</begin>" +
+            "        <end>2007-01-14T21:06:04Z</end>" +
+            "      </TimeSpan>" +
+            "      <Point>" +
+            "        <coordinates>-122.536688,37.860072,0</coordinates>" +
+            "      </Point>" +
+            "    </Placemark>" +
+            "  </Document>" +
+            "</kml>");
+
+        ge.getFeatures().appendChild(timeAwareDoc);
+
+        // Fly to the Pentagon
+        KmlLookAt la = ge.createLookAt("");
+        la.set(37.860303, -122.536422, 0, KmlAltitudeMode.ALTITUDE_RELATIVE_TO_GROUND, 0, 45, 75);
+        ge.getView().setAbstractView(la);
     }
 }
