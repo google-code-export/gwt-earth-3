@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='gwtearthdemo'>
+	<!-- Inherit the core Web Toolkit stuff.                        -->
+	<inherits name='com.google.gwt.user.User' />
+
+	<!-- Inherit the default GWT style sheet.  You can change       -->
+	<!-- the theme of your GWT application by uncommenting          -->
+	<!-- any one of the following lines.                            -->
+	<inherits name='com.google.gwt.user.theme.clean.Clean' />
+	<!-- <inherits name='com.google.gwt.user.theme.standard.Standard'/> -->
+	<!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
+	<!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+
+	<!-- Other module inherits                                      -->
+	<inherits name='com.nitrous.gwt.earth.GwtEarthAPI' />
+
+	<!-- Specify the app entry point class.                         -->
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ExecuteBatchDemo'/>   
+
+<!-- 
+    Available entry point demo classes: 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ExecuteBatchDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.FetchBadKmlDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.FetchGoodKmlDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.NetworkLinkDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ParseKmlDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.PlacemarkStyleMapDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.KmlExtendedDataDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.HelloWorldDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.MouseListenerDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.BalloonListenerDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ClosingBalloonsDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.FrameEndDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ViewChangeDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.MovingPlacemarkDemo'/>   
+ -->
+
+	<!-- Specify the paths for translatable code                    -->
+	<source path='client/demo' />
+
+</module>
