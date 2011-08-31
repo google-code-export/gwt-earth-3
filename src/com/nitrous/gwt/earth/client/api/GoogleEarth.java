@@ -323,7 +323,7 @@ public final class GoogleEarth {
      * @param listener  A listener that will be called with an instance of KmlEvent when the event occurs on the object.
      * @return the HandlerRegistration that can be used to unregister the listener 
      */
-    private static HandlerRegistration addEventListener(JavaScriptObject targetObject, String eventId, KmlEventListener listener) {
+    public static HandlerRegistration addEventListener(JavaScriptObject targetObject, String eventId, KmlEventListener listener) {
         JavaScriptObject jsListener = doAddEventListener(targetObject, eventId, listener);
         HandlerRegistration reg = new GEHandlerRegistration(targetObject, jsListener, eventId);
         return reg;
@@ -352,7 +352,7 @@ public final class GoogleEarth {
      * @param useCapture Whether or not this listener should initiate capture. For more details on event capture and bubbling, see the relevant <a href="http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-flow-capture">W3C DOM documentation</a>. 
      * @return the HandlerRegistration that can be used to unregister the listener 
      */
-    private static HandlerRegistration addEventListener(JavaScriptObject targetObject, String eventId, KmlEventListener listener, boolean useCapture) {
+    public static HandlerRegistration addEventListener(JavaScriptObject targetObject, String eventId, KmlEventListener listener, boolean useCapture) {
         JavaScriptObject jsListener = doAddEventListener(targetObject, eventId, listener, useCapture);
         HandlerRegistration reg = new GEHandlerRegistration(targetObject, jsListener, eventId);
         return reg;

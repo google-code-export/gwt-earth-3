@@ -73,8 +73,8 @@ public class TimeAwareKmlDemo implements EntryPoint {
         ge.getNavigationControl().setVisibility(GEVisibility.VISIBILITY_AUTO);
         
         // show some layers
-        ge.enableLayer(GELayerId.LAYER_BUILDINGS, true);
         ge.enableLayer(GELayerId.LAYER_BORDERS, true);
+        ge.enableLayer(GELayerId.LAYER_ROADS, true);
 
         // Sample KML taken from
         // http://code.google.com/apis/kml/documentation/kml_tut.html#polygons

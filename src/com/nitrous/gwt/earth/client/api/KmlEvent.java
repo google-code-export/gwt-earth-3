@@ -49,7 +49,7 @@ public class KmlEvent extends JavaScriptObject {
 	 * 
 	 * @return The object to which the KMLEvent was originally dispatched.
 	 */
-	public final native GEEventEmitter getTarget() /*-{
+	public final native KmlObject getTarget() /*-{
 		return this.getTarget();
 	}-*/;
 
