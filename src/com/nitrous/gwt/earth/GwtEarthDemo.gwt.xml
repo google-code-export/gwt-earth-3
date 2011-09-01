@@ -15,10 +15,15 @@
 	<inherits name='com.nitrous.gwt.earth.GwtEarthAPI' />
 
 	<!-- Specify the app entry point class.                         -->
-    <entry-point class='com.nitrous.gwt.earth.client.demo.LineStringStyleDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.CreatingMultiGeoPlacemarkDemo'/>   
 
 <!-- 
     Available entry point demo classes: 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.CreatingMultiGeoPlacemarkDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.Creating3DModelsDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.PolygonStylingDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.CreateCirclePolygonsDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.CreatePolygonsDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.LineStringStyleDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.CreateLineStringsDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.DraggablePlacemarkDemo'/>   
