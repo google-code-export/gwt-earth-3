@@ -30,7 +30,7 @@ import com.nitrous.gwt.earth.client.api.KmlPoint;
 import com.nitrous.gwt.earth.client.api.KmlStyle;
 
 /**
- * A GWT implementation of the demo found here: http://code.google.com/apis/ajax/playground/#underwater_placemarks
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#underwater_placemarks">here</a>.
  */
 public class UnderwaterPlacemarkDemo implements EntryPoint {
 

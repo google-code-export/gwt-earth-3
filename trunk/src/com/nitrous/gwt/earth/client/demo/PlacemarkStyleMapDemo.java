@@ -41,8 +41,7 @@ import com.nitrous.gwt.earth.client.api.KmlStyle;
 import com.nitrous.gwt.earth.client.api.KmlStyleMap;
 
 /**
- * A GWT implementation of the "Styling Placemarks using Style Maps" demo found
- * here: http://code.google.com/apis/ajax/playground/#styling_placemarks_using_style_maps
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#styling_placemarks_using_style_maps">here</a>.
  * 
  * @author nick
  * 

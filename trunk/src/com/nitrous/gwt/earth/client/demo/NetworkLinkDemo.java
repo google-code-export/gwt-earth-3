@@ -35,7 +35,8 @@ import com.nitrous.gwt.earth.client.api.KmlNetworkLink;
 
 /**
  * A demo that shows how to create network links.
- * Based upon the original JavaScript demo here: http://code.google.com/apis/ajax/playground/#creating_network_links
+ * 
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#creating_network_links">here</a>.
  * 
  * @author nick
  * 

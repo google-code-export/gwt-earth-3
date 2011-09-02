@@ -37,7 +37,7 @@ import com.nitrous.gwt.earth.client.api.KmlPoint;
 import com.nitrous.gwt.earth.client.api.KmlStyle;
 
 /**
- * A GWT implementation of the demo found here: http://code.google.com/apis/ajax/playground/#creating_placemarks
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#creating_placemarks">here</a>.
  */
 public class CreatingPlacemarksDemo implements EntryPoint {
 

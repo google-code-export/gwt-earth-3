@@ -44,7 +44,7 @@ import com.nitrous.gwt.earth.client.api.KmlObject;
 import com.nitrous.gwt.earth.client.api.event.KmlLoadCallback;
 
 /**
- * A GWT implementation of the demo found here: http://code.google.com/apis/ajax/playground/#fetch_kml_(interactive,_checkboxes)
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#fetch_kml_(interactive,_checkboxes)">here</a>.
  * 
  * @author Nick
  *

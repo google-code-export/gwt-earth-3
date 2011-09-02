@@ -42,11 +42,7 @@ import com.nitrous.gwt.earth.client.api.KmlPoint;
 import com.nitrous.gwt.earth.client.api.event.BalloonListener;
 
 /**
- * An extended version of the "closing ballons" demo that shows how to use a Balloon Listener.
- * 
- * The original JavaScript demo can be found here:
- * http://code.google.com/apis/ajax/playground/?exp=earth#closing_balloons
- * 
+ * An extended version of the <a href="http://code.google.com/apis/ajax/playground/?exp=earth#closing_balloons">closing balloons</a> demo that shows how to use a Balloon Listener.
  * 
  * @author nick
  * 

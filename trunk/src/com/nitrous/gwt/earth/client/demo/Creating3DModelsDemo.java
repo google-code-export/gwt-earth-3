@@ -37,7 +37,7 @@ import com.nitrous.gwt.earth.client.api.KmlModel;
 import com.nitrous.gwt.earth.client.api.KmlPlacemark;
 
 /**
- * A GWT implementation of the demo found here: http://code.google.com/apis/ajax/playground/#creating_3d_models
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#creating_3d_models">here</a>.
  */
 public class Creating3DModelsDemo implements EntryPoint {
 

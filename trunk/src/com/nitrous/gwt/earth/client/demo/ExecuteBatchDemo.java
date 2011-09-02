@@ -43,7 +43,7 @@ import com.nitrous.gwt.earth.client.api.KmlPlacemark;
 /**
  * This demo illustrates the performance difference that can be obtained by taking advantage of batch execution.
  * 
- * A GWT implementation of the demo found here: http://code.google.com/p/earth-api-samples/source/browse/trunk/examples/batch.html?r=108
+ * A GWT implementation of the demo found <a href="http://code.google.com/p/earth-api-samples/source/browse/trunk/examples/batch.html?r=108">here</a>.
  * 
  * @author Nick
  *
