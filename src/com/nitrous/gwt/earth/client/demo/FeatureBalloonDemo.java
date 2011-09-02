@@ -17,40 +17,37 @@ package com.nitrous.gwt.earth.client.demo;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.Timer;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.nitrous.gwt.earth.client.api.GEFeatureBalloon;
 import com.nitrous.gwt.earth.client.api.GELayerId;
 import com.nitrous.gwt.earth.client.api.GEPlugin;
 import com.nitrous.gwt.earth.client.api.GEPluginReadyListener;
 import com.nitrous.gwt.earth.client.api.GEVisibility;
 import com.nitrous.gwt.earth.client.api.GoogleEarthWidget;
-import com.nitrous.gwt.earth.client.api.event.ViewChangeListener;
+import com.nitrous.gwt.earth.client.api.KmlAltitudeMode;
+import com.nitrous.gwt.earth.client.api.KmlLookAt;
+import com.nitrous.gwt.earth.client.api.KmlPlacemark;
+import com.nitrous.gwt.earth.client.api.KmlPoint;
 
 /**
- * A GWT implementation of the view change demo found here:
- * http://code.google.com/apis/ajax/playground/?exp=earth#viewchange_event_%28and_viewchangebegin,_viewchangeend%29
+ * A GWT implementation of the demo found here:
+ * http://code.google.com/apis/ajax/playground/#feature_balloons
+ * 
  * 
  * @author nick
  * 
  */
-public class ViewChangeDemo implements EntryPoint {
+public class FeatureBalloonDemo implements EntryPoint {
 
 	private GoogleEarthWidget earth;
-	
-	// this can be used to remove the view change listener
-	private HandlerRegistration eventListenerRegistration;
-
-	private Label viewChangeEndCountLabel;
-	private int viewChangeEndCount = 0;
-	private Label viewChangedLabel;
-	private static final String CHANGE_END_TEXT = "viewchangeend count: ";
+	private KmlPlacemark placemark;
 	
 	public void onModuleLoad() {
 		// construct the UI widget
@@ -69,81 +66,73 @@ public class ViewChangeDemo implements EntryPoint {
 			}
 		});
 
-
+		Button showButton = new Button("Show the placemark's balloon!");
+		showButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				GEPlugin ge = earth.getGEPlugin();
+				GEFeatureBalloon balloon = ge.createFeatureBalloon("");
+				balloon.setMaxWidth(300);
+				balloon.setFeature(placemark);
+				ge.setBalloon(balloon);			
+			}
+		});
 		
-		VerticalPanel labels = new VerticalPanel();
-		viewChangeEndCountLabel = new Label(CHANGE_END_TEXT + 0);
-		viewChangedLabel = new Label("View Changed!");
-		labels.add(viewChangeEndCountLabel);
-		labels.add(viewChangedLabel);
-
-		HorizontalPanel topPanel = new HorizontalPanel();
+		VerticalPanel topPanel = new VerticalPanel();
 		topPanel.setWidth("100%");
 		topPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		topPanel.add(labels);
-		
+		topPanel.add(showButton);
+
 		DockLayoutPanel layout = new DockLayoutPanel(Unit.PX);
 		layout.addNorth(topPanel, 40D);
 		layout.add(earth);
 		RootLayoutPanel.get().add(layout);
-		
-		viewChangedLabel.getElement().setAttribute("style", "background-color: #a00; color: #fff; font-weight: bold;");
-		viewChangedLabel.setVisible(false);
 
 		// begin loading the Google Earth Plug-in
 		earth.init();
 	}
 
-	private Timer vcTimeout = null;
-	
 	/**
 	 * Display content on the map
 	 */
 	private void loadMapContent() {
-		// The GEPlugin is the core class and is a great place to start browsing
-		// the API
+		// The GEPlugin is the core class and is a great place to start browsing the API
 		GEPlugin ge = earth.getGEPlugin();
 		ge.getWindow().setVisibility(true);
 
+		// add a navigation control
 		ge.getNavigationControl().setVisibility(GEVisibility.VISIBILITY_AUTO);
 		
 		// add some layers
 		ge.enableLayer(GELayerId.LAYER_BORDERS, true);
 		ge.enableLayer(GELayerId.LAYER_ROADS, true);
 
-		// the timer that will be used to hid the label after 250ms of inactivity
-		vcTimeout = new Timer(){
-			@Override
-			public void run() {
-				viewChangedLabel.setVisible(false);
-			}
-		};
-		
-		// register the view change listener to hide/show the label and update the view change end count label
-		eventListenerRegistration = ge.getView().addViewChangeListener(new ViewChangeListener(){
+		// create the placemark
+		placemark = ge.createPlacemark("");
 
-			@Override
-			public void onViewChange() {
-				viewChangedLabel.setVisible(true);
-				//reschedule the timer to hide the 'view changed' message after 250ms of inactivity
-				if (vcTimeout != null) {
-					vcTimeout.cancel();
-				}
-				vcTimeout.schedule(250);
-				
-			}
+		KmlPoint point = ge.createPoint("");
+		point.setLatitude(37);
+		point.setLongitude(-122);
+		placemark.setGeometry(point);
 
-			@Override
-			public void onViewChangeBegin() {
-			}
+		// add the placemark to the earth DOM
+		ge.getFeatures().appendChild(placemark);
 
-			@Override
-			public void onViewChangeEnd() {
-				viewChangeEndCount++;
-				viewChangeEndCountLabel.setText(CHANGE_END_TEXT + viewChangeEndCount);
-			}
-		});
-		
+		  // look at the placemark we created
+		KmlLookAt la = ge.createLookAt("");
+		la.set(37, -122,
+		    0, // altitude
+		    KmlAltitudeMode.ALTITUDE_RELATIVE_TO_GROUND,
+		    0, // heading
+		    0, // straight-down tilt
+		    5000 // range (inverse of zoom)
+		    );
+		ge.getView().setAbstractView(la);
+
+		// give the placemark a name and a description (a balloon will
+		// automatically show on click)
+		placemark.setName("Placemark 1");
+		placemark.setDescription("This is the coolest placemark ever.");
 	}
 
 }
