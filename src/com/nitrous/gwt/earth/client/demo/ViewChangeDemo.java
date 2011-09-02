@@ -34,8 +34,7 @@ import com.nitrous.gwt.earth.client.api.GoogleEarthWidget;
 import com.nitrous.gwt.earth.client.api.event.ViewChangeListener;
 
 /**
- * A GWT implementation of the view change demo found here:
- * http://code.google.com/apis/ajax/playground/?exp=earth#viewchange_event_%28and_viewchangebegin,_viewchangeend%29
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/?exp=earth#viewchange_event_%28and_viewchangebegin,_viewchangeend%29">here</a>.
  * 
  * @author nick
  * 

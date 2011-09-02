@@ -40,7 +40,7 @@ import com.nitrous.gwt.earth.client.api.KmlPolygon;
 import com.nitrous.gwt.earth.client.api.KmlStyle;
 
 /**
- * A GWT implementation of the demo found here: http://code.google.com/apis/ajax/playground/#polygon_styling
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#polygon_styling">here</a>.
  */
 public class PolygonStylingDemo implements EntryPoint {
 

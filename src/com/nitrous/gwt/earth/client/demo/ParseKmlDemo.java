@@ -29,7 +29,8 @@ import com.nitrous.gwt.earth.client.api.KmlObject;
 
 /**
  * This demo shows how to parse KML.
- * Original JavaScript demo here: http://code.google.com/apis/ajax/playground/#parse_kml
+ * 
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#parse_kml">here</a>.
  * 
  * @author Nick
  *

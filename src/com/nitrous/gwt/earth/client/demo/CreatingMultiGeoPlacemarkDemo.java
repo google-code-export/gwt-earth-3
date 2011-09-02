@@ -37,7 +37,7 @@ import com.nitrous.gwt.earth.client.api.KmlMultiGeometry;
 import com.nitrous.gwt.earth.client.api.KmlPlacemark;
 
 /**
- * A GWT implementation of the demo found here: http://code.google.com/apis/ajax/playground/#creating_multi-geometry_placemarks
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#creating_multi-geometry_placemarks">here</a>.
  */
 public class CreatingMultiGeoPlacemarkDemo implements EntryPoint {
 

@@ -37,7 +37,7 @@ import com.nitrous.gwt.earth.client.api.KmlPlacemark;
 import com.nitrous.gwt.earth.client.api.KmlPolygon;
 
 /**
- * A GWT implementation of the demo found here: http://code.google.com/apis/ajax/playground/#creating_polygons
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#creating_polygons">here</a>.
  */
 public class CreatePolygonsDemo implements EntryPoint {
 

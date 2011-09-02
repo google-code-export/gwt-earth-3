@@ -37,7 +37,7 @@ import com.nitrous.gwt.earth.client.api.KmlLookAt;
 import com.nitrous.gwt.earth.client.api.KmlObject;
 
 /**
- * A GWT implementation of the demo found here: http://code.google.com/apis/ajax/playground/#parse_kml_(interactive)
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#parse_kml_(interactive)">here</a>.
  * 
  * @author Nick
  *

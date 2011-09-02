@@ -32,7 +32,7 @@ import com.nitrous.gwt.earth.client.api.KmlPoint;
 import com.nitrous.gwt.earth.client.api.event.MouseListener;
 
 /**
- * A GWT implementation of the demo found here: http://code.google.com/apis/ajax/playground/#draggable_placemark
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#draggable_placemark">here</a>.
  */
 public class DraggablePlacemarkDemo implements EntryPoint {
 

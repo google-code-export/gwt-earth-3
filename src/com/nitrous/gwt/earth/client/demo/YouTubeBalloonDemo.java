@@ -16,15 +16,8 @@
 package com.nitrous.gwt.earth.client.demo;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DockLayoutPanel;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.gwt.earth.client.api.GEHtmlStringBalloon;
 import com.nitrous.gwt.earth.client.api.GELayerId;
 import com.nitrous.gwt.earth.client.api.GEPlugin;
@@ -32,17 +25,21 @@ import com.nitrous.gwt.earth.client.api.GEPluginReadyListener;
 import com.nitrous.gwt.earth.client.api.GEVisibility;
 import com.nitrous.gwt.earth.client.api.GoogleEarthWidget;
 import com.nitrous.gwt.earth.client.api.KmlAltitudeMode;
+import com.nitrous.gwt.earth.client.api.KmlFeature;
 import com.nitrous.gwt.earth.client.api.KmlLookAt;
+import com.nitrous.gwt.earth.client.api.KmlMouseEvent;
 import com.nitrous.gwt.earth.client.api.KmlPlacemark;
 import com.nitrous.gwt.earth.client.api.KmlPoint;
+import com.nitrous.gwt.earth.client.api.event.MouseClickListener;
 
 /**
- * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#html_string_balloons">here</a>.
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/?exp=earth#embedding_youtube_videos_in_balloons">here</a>.
+ * 
+ * This demo shows how to embed a YouTube video inside the popup balloon of a placemark.
  * 
  * @author nick
- * 
  */
-public class HtmlStringBalloonDemo implements EntryPoint {
+public class YouTubeBalloonDemo implements EntryPoint {
 
 	private GoogleEarthWidget earth;
 	private KmlPlacemark placemark;
@@ -64,34 +61,8 @@ public class HtmlStringBalloonDemo implements EntryPoint {
 			}
 		});
 
-		Button showButton = new Button("Show an HTML String balloon!");
-		showButton.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				GEPlugin ge = earth.getGEPlugin();
-				GEHtmlStringBalloon balloon = ge.createHtmlStringBalloon("");
-				balloon.setFeature(placemark); // optional
-				balloon.setMaxWidth(300);
-
-				// Google logo.
-				balloon.setContentString(
-					"<img src=\"http://www.google.com/intl/en_ALL/images/logo.gif\"><br>"
-					+ "<font size=20>Earth Plugin</font><br><font size=-2>sample info "
-					+ "window</font>");
-
-				ge.setBalloon(balloon);			
-			}
-		});
-		
-		VerticalPanel topPanel = new VerticalPanel();
-		topPanel.setWidth("100%");
-		topPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		topPanel.add(showButton);
-
-		DockLayoutPanel layout = new DockLayoutPanel(Unit.PX);
-		layout.addNorth(topPanel, 40D);
-		layout.add(earth);
-		RootLayoutPanel.get().add(layout);
+		// Add the earth widget to the DOM
+		RootLayoutPanel.get().add(earth);
 
 		// begin loading the Google Earth Plug-in
 		earth.init();
@@ -101,7 +72,8 @@ public class HtmlStringBalloonDemo implements EntryPoint {
 	 * Display content on the map
 	 */
 	private void loadMapContent() {
-		// The GEPlugin is the core class and is a great place to start browsing the API
+		// The GEPlugin is the core class and is a great place to start browsing
+		// the API
 		GEPlugin ge = earth.getGEPlugin();
 		ge.getWindow().setVisibility(true);
 
@@ -114,7 +86,7 @@ public class HtmlStringBalloonDemo implements EntryPoint {
 
 		// create the placemark
 		placemark = ge.createPlacemark("");
-
+		
 		KmlPoint point = ge.createPoint("");
 		point.setLatitude(37);
 		point.setLongitude(-122);
@@ -132,7 +104,43 @@ public class HtmlStringBalloonDemo implements EntryPoint {
 		    0, // straight-down tilt
 		    5000 // range (inverse of zoom)
 		    );
-		ge.getView().setAbstractView(la);
+		ge.getView().setAbstractView(la);		
+        placemark.setName("Click for a YouTube video!");
+        
+		ge.getWindow().addMouseClickListener(new MouseClickListener() {
+            @Override
+            public void onClick(KmlMouseEvent event) {
+                GEPlugin ge = earth.getGEPlugin();
+                
+                // prevent the default balloon from popping up
+                event.preventDefault();
+
+                GEHtmlStringBalloon balloon = ge.createHtmlStringBalloon("");
+                balloon.setFeature((KmlFeature)event.getTarget()); //optional
+                balloon.setMaxWidth(560);
+
+                // YouTube video embed... the &nbsp; in the beginning is a fix for IE6
+                balloon.setContentString("&nbsp;" +
+                		"<iframe width=\"560\" height=\"345\" " +
+                		"src=\"http://www.youtube.com/embed/vtAVeGOUEr0\" " +
+                		"frameborder=\"0\" " +
+                		"allowfullscreen>" +
+                		"</iframe>");
+                ge.setBalloon(balloon);                
+            }
+            
+            @Override
+            public void onMouseUp(KmlMouseEvent event) {
+            }
+            
+            @Override
+            public void onMouseDown(KmlMouseEvent event) {
+            }
+            
+            @Override
+            public void onDoubleClick(KmlMouseEvent event) {
+            }            
+        }); 
 	}
 
 }

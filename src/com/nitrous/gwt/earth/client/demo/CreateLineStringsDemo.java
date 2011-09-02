@@ -35,7 +35,7 @@ import com.nitrous.gwt.earth.client.api.KmlLookAt;
 import com.nitrous.gwt.earth.client.api.KmlPlacemark;
 
 /**
- * A GWT implementation of the demo found here: http://code.google.com/apis/ajax/playground/#creating_line_strings
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#creating_line_strings">here</a>.
  */
 public class CreateLineStringsDemo implements EntryPoint {
 

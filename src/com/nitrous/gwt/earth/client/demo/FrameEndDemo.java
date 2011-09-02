@@ -35,8 +35,7 @@ import com.nitrous.gwt.earth.client.api.KmlCamera;
 import com.nitrous.gwt.earth.client.api.event.FrameEndListener;
 
 /**
- * A GWT implementation of the frame end demo found here:
- * http://code.google.com/apis/ajax/playground/?exp=earth#smooth_animation_with_frameend
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#smooth_animation_with_frameend">here</a>.
  * 
  * @author nick
  * 

@@ -34,8 +34,9 @@ import com.nitrous.gwt.earth.client.api.KmlPoint;
 import com.nitrous.gwt.earth.client.api.event.MouseClickListener;
 
 /**
- * A demo that shows how to access ExtendedData in the Kml Document
- * Based upon the original JavaScript demo here: http://code.google.com/apis/ajax/playground/#extended_data_in_balloons
+ * A demo that shows how to access ExtendedData in the Kml Document.
+ * 
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#extended_data_in_balloons">here</a>.
  * 
  * @author nick
  * 

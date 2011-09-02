@@ -37,9 +37,7 @@ import com.nitrous.gwt.earth.client.api.KmlPlacemark;
 import com.nitrous.gwt.earth.client.api.KmlPoint;
 
 /**
- * A GWT implementation of the demo found here:
- * http://code.google.com/apis/ajax/playground/#html_div_balloons
- * 
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#html_div_balloons">here</a>.
  * 
  * @author nick
  * 

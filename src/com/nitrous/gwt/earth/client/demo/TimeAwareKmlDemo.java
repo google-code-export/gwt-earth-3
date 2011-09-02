@@ -28,7 +28,7 @@ import com.nitrous.gwt.earth.client.api.KmlLookAt;
 import com.nitrous.gwt.earth.client.api.KmlObject;
 
 /**
- * A GWT implementation of the demo found here: http://code.google.com/apis/ajax/playground/#showing_time_ui_by_parsing_time-aware_kml
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#showing_time_ui_by_parsing_time-aware_kml">here</a>.
  * 
  * @author Nick
  *

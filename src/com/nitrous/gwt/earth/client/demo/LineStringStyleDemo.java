@@ -37,7 +37,7 @@ import com.nitrous.gwt.earth.client.api.KmlPlacemark;
 import com.nitrous.gwt.earth.client.api.KmlStyle;
 
 /**
- * A GWT implementation of the demo found here: http://code.google.com/apis/ajax/playground/#line_string_styling
+ * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#line_string_styling">here</a>.
  */
 public class LineStringStyleDemo implements EntryPoint {
 
