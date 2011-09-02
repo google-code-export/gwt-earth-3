@@ -29,6 +29,13 @@ public class GEAbstractBalloon extends JavaScriptObject {
 	}
 
 	/**
+	 * @return The type of this object (e.g. 'GEHtmlStringBalloon').
+	 */
+	public final native String getType() /*-{
+		return this.getType();
+	}-*/;
+	
+	/**
 	 * 
 	 * @return The ID of the balloon.
 	 */
