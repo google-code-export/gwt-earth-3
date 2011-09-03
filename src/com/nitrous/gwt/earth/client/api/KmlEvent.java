@@ -46,26 +46,27 @@ public class KmlEvent extends JavaScriptObject {
 	}-*/;
 
 	/**
-	 * 
 	 * @return The object to which the KMLEvent was originally dispatched.
 	 */
-	public final native KmlObject getTarget() /*-{
+	public final native GEEventEmitter getTarget() /*-{
 		return this.getTarget();
 	}-*/;
 
 	/**
-	 * 
 	 * @return The target whose event listeners are currently being processed.
 	 */
 	public final native GEEventEmitter getCurrentTarget() /*-{
 		return this.getCurrentTarget();
 	}-*/;
 
+	/**
+	 * @return The current stage of the flow of events. 
+	 */
 	public final GEEventPhase getEventPhase() {
 	    return GEPluginConstants.get().toGEEventPhase(getEventPhaseNative());
 	}
+	
 	/**
-	 * 
 	 * @return The current stage of the flow of events.
 	 */
 	private final native int getEventPhaseNative() /*-{
@@ -73,7 +74,6 @@ public class KmlEvent extends JavaScriptObject {
 	}-*/;
 
 	/**
-	 * 
 	 * @return Indicates whether or not an event is a bubbling event.
 	 */
 	public final native boolean getBubbles() /*-{
@@ -81,12 +81,21 @@ public class KmlEvent extends JavaScriptObject {
 	}-*/;
 
 	/**
-	 * 
 	 * @return Indicates whether the event can be cancelled. 
-	 * Note: Currently, cancelable has no effect.
+	 * Note: Currently, cancellable has no effect.
 	 */
 	public final native boolean getCancelable() /*-{
 		return this.getCancelable();
 	}-*/;
 
+	/**
+	 * @return The time that this event was generated measured in milliseconds.
+	 */
+	public final long getTimeStamp() {
+		return Long.parseLong(doGetTimeStamp());
+	}
+	private final native String doGetTimeStamp() /*-{
+		return String(this.getTimeStamp());
+	}-*/;
+	
 }
