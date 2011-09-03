@@ -30,13 +30,6 @@ public class KmlObject extends GEEventEmitter {
 	}
 
 	/**
-	 * @return The interface name (i.e. 'KmlPlacemark') of the object.
-	 */
-	public final native String getType() /*-{
-		return this.getType();
-	}-*/;
-
-	/**
 	 * Test whether this object is the same as another object. Useful for Chrome
 	 * and Safari, where the comparison a==b sometimes fails for plugin objects.
 	 * 

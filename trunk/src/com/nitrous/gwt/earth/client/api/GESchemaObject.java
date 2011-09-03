@@ -25,4 +25,11 @@ public class GESchemaObject extends JavaScriptObject {
 	protected GESchemaObject() {
 	}
 
+	/**
+	 * @return The interface name (e.g. 'KmlPlacemark') of the object.
+	 */
+	public final native String getType() /*-{
+		return this.getType();
+	}-*/;
+
 }
