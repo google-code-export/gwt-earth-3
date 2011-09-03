@@ -15,10 +15,13 @@
 	<inherits name='com.nitrous.gwt.earth.GwtEarthAPI' />
 
 	<!-- Specify the app entry point class.                         -->
-    <entry-point class='com.nitrous.gwt.earth.client.demo.PlacemarkClickHandlingDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.TiltCameraDemo'/>   
 
 <!-- 
     Available entry point demo classes: 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.TiltCameraDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.MoveCameraWithTimerDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.MoveCameraDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.PlacemarkClickHandlingDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.WindowEventHandlingDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.ToggleEventListenerDemo'/>   
