@@ -41,7 +41,7 @@ import com.nitrous.gwt.earth.client.api.event.KmlEventListener;
  * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#hit-testing_%28x/y_to_lat/lon%29">here</a>.
  * 
  * This demo adds a click listener to the Google Earth globe and plots a placemark when the globe is clicked.
- * Depending on the type of object that is clicked, the placemark will be labeled 'B' for buildings, 'G' for ground and 'T' for terrain.
+ * Depending on the type of object that is clicked, the placemark will be labeled 'B' for buildings, 'G' for globe and 'T' for terrain.
  * 
  * @author Nick
  * 
