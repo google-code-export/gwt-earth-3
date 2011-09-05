@@ -25,8 +25,7 @@
     <entry-point class='com.nitrous.gwt.earth.client.demo.MarsDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.BuildingDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.DuskToDawnDemo'/>   
-    <entry-point class='com.nitrous.gwt.earth.client.demo.GrayBuildingDemoo'/>   
-    
+    <entry-point class='com.nitrous.gwt.earth.client.demo.GrayBuildingDemo'/>       
     <entry-point class='com.nitrous.gwt.earth.client.demo.GroundAltitudeDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.HitTestingDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.ScreenOverlayFrameDemo'/>   
