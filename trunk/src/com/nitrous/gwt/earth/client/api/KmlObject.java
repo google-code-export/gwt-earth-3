@@ -37,7 +37,7 @@ public class KmlObject extends GEEventEmitter {
 	 * @return
 	 */
 	public final native boolean equals(KmlObject compareTo) /*-{
-		return this.equals(compareTo);
+		return this.equals(compareTo) == true;
 	}-*/;
 
 	/**

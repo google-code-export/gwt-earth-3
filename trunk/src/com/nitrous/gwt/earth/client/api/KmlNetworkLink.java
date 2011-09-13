@@ -84,7 +84,7 @@ public class KmlNetworkLink extends KmlFeature {
      * @return
      */
     public final native boolean getRefreshVisibility() /*-{
-		return this.getRefreshVisibility();
+		return this.getRefreshVisibility() == true;
     }-*/;
 
     /**
@@ -111,7 +111,7 @@ public class KmlNetworkLink extends KmlFeature {
      * @return
      */
     public final native boolean getFlyToView() /*-{
-		return this.getFlyToView();
+		return this.getFlyToView() == true;
     }-*/;
 
     /**

@@ -35,7 +35,7 @@ public class GESun extends JavaScriptObject {
      * @return
      */
     public final native boolean getVisibility() /*-{
-		return this.getVisibility();
+		return this.getVisibility() == true;
     }-*/;
 
     /**

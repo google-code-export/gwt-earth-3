@@ -67,7 +67,7 @@ public class GETime extends JavaScriptObject {
      * @return Whether or not historical imagery is enabled.
      */
     public final native boolean getHistoricalImageryEnabled() /*-{
-        return this.getHistoricalImageryEnabled();
+        return this.getHistoricalImageryEnabled() == true;
     }-*/;
 
     /**

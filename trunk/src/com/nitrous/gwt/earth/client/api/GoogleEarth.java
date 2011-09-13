@@ -25,7 +25,7 @@ public final class GoogleEarth {
      * @return Whether or not the Google Earth Browser Plug-in and API are supported on the current browser and operating system. 
      */
     public static native boolean isSupported() /*-{
-        return $wnd.google.earth.isSupported();
+        return $wnd.google.earth.isSupported() == true;
     }-*/;
     
     /**
@@ -39,7 +39,7 @@ public final class GoogleEarth {
      * the user's machine.
      */
     public static native boolean isInstalled() /*-{
-        return $wnd.google.earth.isInstalled();
+        return $wnd.google.earth.isInstalled() == true;
     }-*/;
     
     /**

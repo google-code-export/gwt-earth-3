@@ -148,7 +148,7 @@ public class GEAbstractBalloon extends JavaScriptObject {
 	 * frame. Default is true.
 	 */
 	public final native boolean getCloseButtonEnabled() /*-{
-		return this.getCloseButtonEnabled();
+		return this.getCloseButtonEnabled() == true;
 	}-*/;
 
 	/**
