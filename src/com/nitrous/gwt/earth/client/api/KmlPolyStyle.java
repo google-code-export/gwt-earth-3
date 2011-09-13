@@ -32,7 +32,7 @@ public class KmlPolyStyle extends KmlColorStyle {
      * @return whether or not to fill the polygon.
      */
     public final native boolean getFill() /*-{
-		return this.getFill(); == true
+		return this.getFill() == true;
     }-*/;
 
     /**
