@@ -23,34 +23,37 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Widget;
 
 /**
  * The widget that allows you to add the Google Earth view to a GWT user interface
  * @author Nick
  *
  */
-public class GoogleEarthWidget extends Widget {
+public class GoogleEarthWidget extends Composite {
 	private static int id = 0;
 	private GEPlugin gePlugin;
 	private ArrayList<GEPluginReadyListener> pluginReadyListeners = new ArrayList<GEPluginReadyListener>();
 
+	private String containerId;
+	
 	/**
 	 * Constructor
 	 */
 	public GoogleEarthWidget() {
-		HTML html = new HTML(
+		containerId = "map3d"+id;
+		HTML container = new HTML(
 				"<div class='map3dcontainer' id='map3dcontainer" + id + "'>" + 
-				"<div class='map3d' id='map3d" + id + "'></div></div>");
-		setElement(html.getElement());
+				"<div class='map3d' id='" + containerId + "'></div></div>");
+		initWidget(container);
 	}
-	
+		
 	/**
 	 * Begin loading the Google Earth Plugin
 	 */
 	public void init() {
-        GoogleEarth.createInstance("map3d"+id, new GoogleEarthInitListener() {
+        GoogleEarth.createInstance(containerId, new GoogleEarthInitListener() {
             @Override
             public void onSuccess(GEPlugin plugin) {
                 onInitSuccess(plugin);
@@ -101,7 +104,7 @@ public class GoogleEarthWidget extends Widget {
 	 * </pre> 
 	 */
 	public void init(Map<String, String> initParams) {
-        GoogleEarth.createInstance("map3d"+id, initParams, new GoogleEarthInitListener() {
+        GoogleEarth.createInstance(containerId, initParams, new GoogleEarthInitListener() {
             @Override
             public void onSuccess(GEPlugin plugin) {
                 onInitSuccess(plugin);
@@ -131,7 +134,7 @@ public class GoogleEarthWidget extends Widget {
 	public void init(JSONValue jsonInitParams) {
 		String str = jsonInitParams.toString();
 		JavaScriptObject json = toJson(str);
-        GoogleEarth.createInstance("map3d"+id, json, new GoogleEarthInitListener() {
+        GoogleEarth.createInstance(containerId, json, new GoogleEarthInitListener() {
             @Override
             public void onSuccess(GEPlugin plugin) {
                 onInitSuccess(plugin);
