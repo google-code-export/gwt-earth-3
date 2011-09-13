@@ -80,7 +80,7 @@ public class GESchemaObjectContainer extends GESchemaObject {
 	 * @return Returns true if the container is not empty.
 	 */
 	public final native boolean hasChildNodes() /*-{
-		return this.hasChildNodes();
+		return this.hasChildNodes() == true;
 	}-*/;
 
 	/**

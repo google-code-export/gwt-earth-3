@@ -77,7 +77,7 @@ public class KmlEvent extends JavaScriptObject {
 	 * @return Indicates whether or not an event is a bubbling event.
 	 */
 	public final native boolean getBubbles() /*-{
-		return this.getBubbles();
+		return this.getBubbles() == true;
 	}-*/;
 
 	/**
@@ -85,7 +85,7 @@ public class KmlEvent extends JavaScriptObject {
 	 * Note: Currently, cancellable has no effect.
 	 */
 	public final native boolean getCancelable() /*-{
-		return this.getCancelable();
+		return this.getCancelable() == true;
 	}-*/;
 
 	/**

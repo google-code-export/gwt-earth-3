@@ -29,7 +29,7 @@ public class KmlExtrudableGeometry extends KmlAltitudeGeometry {
      * @return
      */
     public final native boolean getExtrude() /*-{
-        return this.getExtrude();
+        return this.getExtrude() == true;
     }-*/;
 
     /**
@@ -45,7 +45,7 @@ public class KmlExtrudableGeometry extends KmlAltitudeGeometry {
      * @return 
      */
     public final native boolean getTessellate() /*-{
-        return this.getTessellate();
+        return this.getTessellate() == true;
     }-*/;
 
     /**

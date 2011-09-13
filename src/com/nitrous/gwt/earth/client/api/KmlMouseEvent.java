@@ -98,7 +98,7 @@ public class KmlMouseEvent extends KmlEvent {
 	 *         Earth globe.
 	 */
 	public final native boolean getDidHitGlobe() /*-{
-		return this.getDidHitGlobe();
+		return this.getDidHitGlobe() == true;
 	}-*/;
 
 	/**
@@ -107,7 +107,7 @@ public class KmlMouseEvent extends KmlEvent {
 	 *         occurred.
 	 */
 	public final native boolean getAltKey() /*-{
-		return this.getAltKey();
+		return this.getAltKey() == true;
 	}-*/;
 
 	/**
@@ -116,7 +116,7 @@ public class KmlMouseEvent extends KmlEvent {
 	 *         occurred.
 	 */
 	public final native boolean getCtrlKey() /*-{
-		return this.getCtrlKey();
+		return this.getCtrlKey() == true;
 	}-*/;
 
 	/**
@@ -125,7 +125,7 @@ public class KmlMouseEvent extends KmlEvent {
 	 *         occurred.
 	 */
 	public final native boolean getShiftKey() /*-{
-		return this.getShiftKey();
+		return this.getShiftKey() == true;
 	}-*/;
 
 	/**

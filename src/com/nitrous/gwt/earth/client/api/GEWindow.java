@@ -45,7 +45,7 @@ public class GEWindow extends GEEventEmitter {
 	 * @return True if Google Earth is visible inside the browser 
 	 */
 	public final native boolean getVisibility() /*-{
-		return this.getVisibility();
+		return this.getVisibility() == true;
 	}-*/;
 
 	/**

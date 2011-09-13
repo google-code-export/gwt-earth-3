@@ -96,7 +96,7 @@ public class GEOptions extends JavaScriptObject {
 	 * @return Show or hide the status bar. Disabled by default.
 	 */
 	public final native boolean getStatusBarVisibility() /*-{
-		return this.getStatusBarVisibility();
+		return this.getStatusBarVisibility() == true;
 	}-*/;
 
 	/**
@@ -114,7 +114,7 @@ public class GEOptions extends JavaScriptObject {
 	 * @return Show or hide the grid. Disabled by default.
 	 */
 	public final native boolean getGridVisibility() /*-{
-		return this.getGridVisibility();
+		return this.getGridVisibility() == true;
 	}-*/;
 
 	/**
@@ -132,7 +132,7 @@ public class GEOptions extends JavaScriptObject {
 	 * @return Show or hide the overview map. Disabled by default.
 	 */
 	public final native boolean getOverviewMapVisibility() /*-{
-		return this.getOverviewMapVisibility();
+		return this.getOverviewMapVisibility() == true;
 	}-*/;
 
 	/**
@@ -140,8 +140,7 @@ public class GEOptions extends JavaScriptObject {
 	 * 
 	 * @param overviewMapVisibility Show or hide the overview map. Disabled by default.
 	 */
-	public final native void setOverviewMapVisibility(
-			boolean overviewMapVisibility) /*-{
+	public final native void setOverviewMapVisibility(boolean overviewMapVisibility) /*-{
 		this.setOverviewMapVisibility(overviewMapVisibility);
 	}-*/;
 
@@ -151,7 +150,7 @@ public class GEOptions extends JavaScriptObject {
 	 * @return Show or hide the scale legend. Disabled by default.
 	 */
 	public final native boolean getScaleLegendVisibility() /*-{
-		return this.getScaleLegendVisibility();
+		return this.getScaleLegendVisibility() == true;
 	}-*/;
 
 	/**
@@ -159,8 +158,7 @@ public class GEOptions extends JavaScriptObject {
 	 * 
 	 * @param scaleLegendVisibility  Show or hide the scale legend. Disabled by default.
 	 */
-	public final native void setScaleLegendVisibility(
-			boolean scaleLegendVisibility) /*-{
+	public final native void setScaleLegendVisibility(boolean scaleLegendVisibility) /*-{
 		this.setScaleLegendVisibility(scaleLegendVisibility);
 	}-*/;
 
@@ -172,7 +170,7 @@ public class GEOptions extends JavaScriptObject {
 	 * Earth. On by default.
 	 */
 	public final native boolean getAtmosphereVisibility() /*-{
-		return this.getAtmosphereVisibility();
+		return this.getAtmosphereVisibility() == true;
 	}-*/;
 
 	/**
@@ -182,8 +180,7 @@ public class GEOptions extends JavaScriptObject {
 	 * @param atmosphereVisibility Show or hide the blue atmosphere that appears around the perimeter of the
 	 * Earth. On by default.
 	 */
-	public final native void setAtmosphereVisibility(
-			boolean atmosphereVisibility) /*-{
+	public final native void setAtmosphereVisibility(boolean atmosphereVisibility) /*-{
 		this.setAtmosphereVisibility(atmosphereVisibility);
 	}-*/;
 
@@ -201,7 +198,7 @@ public class GEOptions extends JavaScriptObject {
 	 * page-up/page-down, etc).
 	 */
 	public final native boolean getMouseNavigationEnabled() /*-{
-		return this.getMouseNavigationEnabled();
+		return this.getMouseNavigationEnabled() == true;
 	}-*/;
 
 	/**
@@ -217,8 +214,7 @@ public class GEOptions extends JavaScriptObject {
 	 * Note: This also enables and disables keyboard navigation (arrow keys,
 	 * page-up/page-down, etc).
 	 */
-	public final native void setMouseNavigationEnabled(
-			boolean mouseNavigationEnabled) /*-{
+	public final native void setMouseNavigationEnabled(boolean mouseNavigationEnabled) /*-{
 		this.setMouseNavigationEnabled(mouseNavigationEnabled);
 	}-*/;
 
@@ -230,7 +226,7 @@ public class GEOptions extends JavaScriptObject {
 	 * from the globe has been enabled.
 	 */
 	public final native boolean getFadeInOutEnabled() /*-{
-		return this.getFadeInOutEnabled();
+		return this.getFadeInOutEnabled() == true;
 	}-*/;
 
 	/**
@@ -255,7 +251,7 @@ public class GEOptions extends JavaScriptObject {
 	 * False denotes metric units (meters and kilometers).
 	 */
 	public final native boolean getUnitsFeetMiles() /*-{
-		return this.getUnitsFeetMiles();
+		return this.getUnitsFeetMiles() == true;
 	}-*/;
 
 	/**
@@ -282,8 +278,7 @@ public class GEOptions extends JavaScriptObject {
 	 * will pop a feature balloon containing information from the Google 3D
 	 * Warehouse database.
 	 */
-	public final native void setBuildingSelectionEnabled(
-			boolean buildingSelectionEnabled) /*-{
+	public final native void setBuildingSelectionEnabled(boolean buildingSelectionEnabled) /*-{
 		this.setBuildingSelectionEnabled(buildingSelectionEnabled);
 	}-*/;
 
@@ -293,7 +288,7 @@ public class GEOptions extends JavaScriptObject {
 	 * @return Whether or not building selection is enabled.
 	 */
 	public final native boolean getBuildingSelectionEnabled() /*-{
-		return this.getBuildingSelectionEnabled();
+		return this.getBuildingSelectionEnabled() == true;
 	}-*/;
 
 	/**
@@ -303,7 +298,7 @@ public class GEOptions extends JavaScriptObject {
 	 * 
 	 */
 	public final native boolean getBuildingHighlightingEnabled() /*-{
-		return this.getBuildingHighlightingEnabled();
+		return this.getBuildingHighlightingEnabled() == true;
 	}-*/;
 
 	/**
@@ -313,8 +308,7 @@ public class GEOptions extends JavaScriptObject {
 	 * @param enabled Enables or disables building highlighting. When enabled, buildings will
 	 * be highlighted when they are moused over.
 	 */
-	public final native void setBuildingHighlightingEnabled(
-			boolean enabled) /*-{
+	public final native void setBuildingHighlightingEnabled(boolean enabled) /*-{
 		this.setBuildingHighlightingEnabled(enabled);
 	}-*/;
 
@@ -351,8 +345,7 @@ public class GEOptions extends JavaScriptObject {
 	 * reaches ground level. This view provides pan and lookAt controls, but no
 	 * zoom slider. The tilt will be set to 90, or parallel with level ground.
 	 */
-	public final native void setAutoGroundLevelViewEnabled(
-			boolean autoGroundLevelViewEnabled) /*-{
+	public final native void setAutoGroundLevelViewEnabled(boolean autoGroundLevelViewEnabled) /*-{
 		this.setAutoGroundLevelViewEnabled(autoGroundLevelViewEnabled);
 	}-*/;
 
@@ -361,6 +354,6 @@ public class GEOptions extends JavaScriptObject {
 	 * @return Whether automatic ground level view is enabled.
 	 */
 	public final native boolean getAutoGroundLevelViewEnabled() /*-{
-		return this.getAutoGroundLevelViewEnabled();
+		return this.getAutoGroundLevelViewEnabled() == true;
 	}-*/;
 }

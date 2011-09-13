@@ -124,7 +124,7 @@ public class GENavigationControl extends JavaScriptObject {
 	 * @return Whether Street View is enabled in the navigation controls.
 	 */
 	public final native boolean getStreetViewEnabled() /*-{
-		return this.getStreetViewEnabled();
+		return this.getStreetViewEnabled() == true;
 	}-*/;
 
 }

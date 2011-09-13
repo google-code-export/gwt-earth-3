@@ -87,7 +87,7 @@ public class KmlFeature extends KmlObject {
 	 *         feature.
 	 */
 	public final native boolean getVisibility() /*-{
-		return this.getVisibility();
+		return this.getVisibility() == true;
 	}-*/;
 
 	/**
@@ -106,7 +106,7 @@ public class KmlFeature extends KmlObject {
 	 * @return Default state of left panel.
 	 */
 	public final native boolean getOpen() /*-{
-		return this.getOpen();
+		return this.getOpen() == true;
 	}-*/;
 
 	/**
