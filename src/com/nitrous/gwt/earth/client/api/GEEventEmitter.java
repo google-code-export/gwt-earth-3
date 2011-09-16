@@ -97,28 +97,28 @@ public class GEEventEmitter extends GESchemaObject {
 	}
 	private final native JavaScriptObject doAddClickListener(MouseClickListener listener) /*-{
 		var jsListener = function(event) {
-			listener.@com.nitrous.gwt.earth.client.api.event.MouseListener::onClick(Lcom/nitrous/gwt/earth/client/api/KmlMouseEvent;)(event);
+			listener.@com.nitrous.gwt.earth.client.api.event.MouseClickListener::onClick(Lcom/nitrous/gwt/earth/client/api/KmlMouseEvent;)(event);
 	    };
 		$wnd.google.earth.addEventListener(this, 'click', jsListener);
 		return jsListener; 
 	}-*/;
 	private final native JavaScriptObject doAddDoubleClickListener(MouseClickListener listener) /*-{
 		var jsListener = function(event) {
-			listener.@com.nitrous.gwt.earth.client.api.event.MouseListener::onDoubleClick(Lcom/nitrous/gwt/earth/client/api/KmlMouseEvent;)(event);
+			listener.@com.nitrous.gwt.earth.client.api.event.MouseClickListener::onDoubleClick(Lcom/nitrous/gwt/earth/client/api/KmlMouseEvent;)(event);
 	    };
 		$wnd.google.earth.addEventListener(this, 'dblclick', jsListener);
 		return jsListener; 
 	}-*/;
 	private final native JavaScriptObject doAddMouseDownListener(MouseClickListener listener) /*-{
 		var jsListener = function(event) {
-			listener.@com.nitrous.gwt.earth.client.api.event.MouseListener::onMouseDown(Lcom/nitrous/gwt/earth/client/api/KmlMouseEvent;)(event);
+			listener.@com.nitrous.gwt.earth.client.api.event.MouseClickListener::onMouseDown(Lcom/nitrous/gwt/earth/client/api/KmlMouseEvent;)(event);
 	    };
 		$wnd.google.earth.addEventListener(this, 'mousedown', jsListener);
 		return jsListener; 
 	}-*/;
 	private final native JavaScriptObject doAddMouseUpListener(MouseClickListener listener) /*-{
 		var jsListener = function(event) {
-			listener.@com.nitrous.gwt.earth.client.api.event.MouseListener::onMouseUp(Lcom/nitrous/gwt/earth/client/api/KmlMouseEvent;)(event);
+			listener.@com.nitrous.gwt.earth.client.api.event.MouseClickListener::onMouseUp(Lcom/nitrous/gwt/earth/client/api/KmlMouseEvent;)(event);
 	    };
 		$wnd.google.earth.addEventListener(this, 'mouseup', jsListener);
 		return jsListener; 
