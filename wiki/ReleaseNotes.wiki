@@ -1,0 +1,40 @@
+==3.06==
+===Released: Sep 13, 2011===
+
+  * Fixes for Issue 5: Return type of {{{KmlMouseEvent.getDidHitGlobe()}}} incorrect (GWT Developer Plugin + Internet Explorer). http://code.google.com/p/gwt-earth-3/issues/detail?id=5&can=1
+
+  * Modified {{{GoogleEarthWidget}}} to be a {{{Composite}}} Widget.
+----
+==3.05==
+===Released: Sep 5, 2011===
+  * Fixed access modifier on {{{GoogleEarth::addEventListener}}} methods.
+  * Fixed return type of {{{KmlEvent::getTarget()}}}
+  * Added {{{getType()}}} to {{{GEAbstractBalloon}}}
+  * Updated JavaDoc for each demo to include a URL to the original JavaScript demo.
+  * Moved {{{getType()}}} from {{{KmlObject}}} to to {{{GESchemaObject}}}
+  * Added {{{getTimeStamp()}}} to {{{KmlEvent}}}
+  * Added many demos
+----
+==3.04==
+===Released: Aug 30, 2011===
+*IMPORTANT NOTE*: {{{ge.getWindow().setVisibility(true)}}} must now be called manually after the {{{GEPlugin}}} is loaded. Previously, the {{{GoogleEarthWidget}}} was calling this automatically but that code has now been removed.
+
+  * Added GoogleEarth class that provides the {{{google.earth}}} namespace functionality.
+  * Added batch execution support.
+  * Added demos
+  * Fixed method access modifiers in {{{KmlExtrudableGeometry}}}
+  * Fixed some JavaDoc links
+  * Modified {{{GoogleEarthWidget}}} to use the new {{{GoogleEarth}}} class for {{{google.earth}}} namespace function calls such as {{{createInstance()}}}
+----
+==3.03==
+===Released: Aug 25, 2011===
+This version adds support for all Event Handling offered by Google Earth 3. 
+----
+==3.02==
+===Released: Aug 21, 2011===
+  * Issue 3:{{{GESchemaObjectContainer::replaceChild(oldChild, newChild)}}} is broken
+  * Added more sample code.
+----
+==3.01==
+===Released: Jun 11, 2011===
+This is the very first build that you can use to get started with the code. The majority of the code is currently untested.
