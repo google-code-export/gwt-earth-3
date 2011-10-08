@@ -19,6 +19,7 @@
 
 <!-- 
     Available entry point demo classes: 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.PolygonDrawingDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.PlacemarkNameClickDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.TerrainDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.SkyModeDemo'/>   
