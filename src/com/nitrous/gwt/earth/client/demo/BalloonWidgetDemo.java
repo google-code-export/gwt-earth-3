@@ -16,13 +16,11 @@
 package com.nitrous.gwt.earth.client.demo;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
@@ -52,13 +50,6 @@ import com.nitrous.gwt.earth.client.api.event.BalloonListener;
  * 
  */
 public class BalloonWidgetDemo implements EntryPoint {
-	/** Maximum number of times to poll the DOM looking for the balloon DIV */
-	private static final int MAX_RETRIES = 100;
-	/** Sleep interval in milliseconds between DOM polling */
-	private static final int RETRY_INTERVAL = 10;
-	/** Current number of remaining retries when polling the DOM for the balloon DIV */
-	private int retry;
-
 	
 	private GoogleEarthWidget earth;
 	private KmlPlacemark placemark;
@@ -165,52 +156,15 @@ public class BalloonWidgetDemo implements EntryPoint {
 		ge.addBalloonListener(new BalloonListener(){
 			@Override
 			public void onBalloonOpening(KmlBalloonOpeningEvent event) {
-				// begin polling the DOM for the DIV with ID 'gwt-widget-container'
-				beginWaitingForDiv();
+				GEHtmlDivBalloon balloon = (GEHtmlDivBalloon)event.getBalloon();
+				Element balloonDiv = (Element)balloon.getContentDiv();
+				populateBalloon(balloonDiv);
 			}
 
 			@Override
 			public void onBalloonClose() {
 			}
 		});
-	}
-	
-	/**
-	 * Begin waiting for Google Earth to insert a DIV with ID 'gwt-widget-container' in the DOM
-	 */
-	private void beginWaitingForDiv() {
-		retry = MAX_RETRIES;
-		waitForDiv();
-	}
-	
-	/**
-	 * Check the DOM for the balloon DIV and if not present sleep and then retry
-	 * until we either find the DIV or meet the maximum number of retries.
-	 */
-	private void waitForDiv() {
-		retry--;
-		Element container = DOM.getElementById("gwt-widget-container");
-		if (container != null) {
-			// output timing to GWT debug console
-			long timeTaken = (MAX_RETRIES  - (retry + 1)) * RETRY_INTERVAL;
-			GWT.log("Found the DIV container after "+timeTaken+"ms");
-			
-			// found the DIV inside the balloon
-			populateBalloon(container);
-		} else {
-			GWT.log("Failed to locate DIV on attempt #"+((MAX_RETRIES  - (retry + 1)) + 1));
-			
-			// didn't find the DIV in the DOM, so sleep and retry
-			if (retry > 0) {
-				Timer t = new Timer() {
-					@Override
-					public void run() {
-						waitForDiv();
-					}
-				};
-				t.schedule(RETRY_INTERVAL);
-			}
-		}
 	}
 		
 	/**
@@ -235,7 +189,7 @@ public class BalloonWidgetDemo implements EntryPoint {
 		RootPanel.get().add(layout);
 		
 		// Now add the widget to the DIV within the balloon.
-		DOM.insertChild(container, layout.getElement(), 0);
+		container.appendChild(layout.getElement());
 	}
 
 }
