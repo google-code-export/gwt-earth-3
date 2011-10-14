@@ -207,12 +207,12 @@ public class BalloonWidgetDemo implements EntryPoint {
 	 * Populate the visible google earth balloon with some widgets
 	 */
 	private void populateBalloon() {
+		// build a simple panel with a label and button to display inside the balloon.
 		VerticalPanel layout = new VerticalPanel();
 		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		layout.add(new Label("This is a GWT widget"));
 		Button closeButton = new Button("Close");
 		layout.add(closeButton);
-		// add event handlers after attached to the DOM
 		closeButton.addClickHandler(new ClickHandler() {				
 			@Override
 			public void onClick(ClickEvent event) {
