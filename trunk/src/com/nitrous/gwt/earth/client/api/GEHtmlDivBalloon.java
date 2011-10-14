@@ -16,15 +16,9 @@
 package com.nitrous.gwt.earth.client.api;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.ui.Widget;
 
 public class GEHtmlDivBalloon extends GEHtmlBalloon {
 	protected GEHtmlDivBalloon() {
-	}
-
-	public final void setContent(Widget w) {
-		String html = w.toString();
-		setContentDiv(html);
 	}
 
 	/**
