@@ -25,9 +25,9 @@ import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -54,11 +54,6 @@ public class BalloonWidgetDemo implements EntryPoint {
 
 	private GoogleEarthWidget earth;
 	private KmlPlacemark placemark;
-	
-	// the timer that hides the status message
-	private Timer timer;
-	// the message showing the events
-	private Label message;
 	
 	public void onModuleLoad() {
 		// construct the UI widget
@@ -102,33 +97,19 @@ public class BalloonWidgetDemo implements EntryPoint {
 			}
 		});
 
-		message = new Label();
-		HorizontalPanel messageRow = new HorizontalPanel();
-		messageRow.add(message);
-		
 		HorizontalPanel buttons = new HorizontalPanel();
 		buttons.add(showButton);
 		buttons.add(closeButton);
-		
 		
 		VerticalPanel topPanel = new VerticalPanel();
 		topPanel.setWidth("100%");
 		topPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		topPanel.add(buttons);
-		topPanel.add(messageRow);
 
 		DockLayoutPanel layout = new DockLayoutPanel(Unit.PX);
-		layout.addNorth(topPanel, 80D);
+		layout.addNorth(topPanel, 40D);
 		layout.add(earth);
 		RootLayoutPanel.get().add(layout);
-
-		// the timer that clears the message after a few seconds
-		timer = new Timer() {
-			@Override
-			public void run() {
-				message.setText("");
-			}
-		};
 
 		// begin loading the Google Earth Plug-in
 		earth.init();
@@ -174,23 +155,10 @@ public class BalloonWidgetDemo implements EntryPoint {
 		
 		// register the balloon event listener
 		ge.addBalloonListener(new BalloonListener(){
-
-			@Override
-			public void onBalloonClose() {
-				timer.cancel();
-				message.setText("Balloon close event received");
-				// hide the message after 2 seconds
-				timer.schedule(2000);
-			}
-
 			@Override
 			public void onBalloonOpening(KmlBalloonOpeningEvent event) {
-				timer.cancel();
-				message.setText("Balloon open event received");
-				// hide the message after 2 seconds
-				timer.schedule(2000);
-				
-				// Give google earth sufficient time to add the DIV to the DOM before populating it with a GWT widget.
+				// Wait for Google Earth to add the DIV to the DOM
+				// before populating the balloon with the GWT widget
 				Timer t = new Timer() {
 					@Override
 					public void run() {
@@ -199,7 +167,10 @@ public class BalloonWidgetDemo implements EntryPoint {
 				};
 				t.schedule(50);
 			}
-			
+
+			@Override
+			public void onBalloonClose() {
+			}
 		});
 	}
 		
@@ -210,7 +181,7 @@ public class BalloonWidgetDemo implements EntryPoint {
 		// build a simple panel with a label and button to display inside the balloon.
 		VerticalPanel layout = new VerticalPanel();
 		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		layout.add(new Label("This is a GWT widget"));
+		layout.add(new HTML("This&nbsp;is&nbsp;a&nbsp;GWT&nbsp;widget"));
 		Button closeButton = new Button("Close");
 		layout.add(closeButton);
 		closeButton.addClickHandler(new ClickHandler() {				
@@ -221,13 +192,14 @@ public class BalloonWidgetDemo implements EntryPoint {
 			}
 		});
 		
-		// IMPORTANT: we must add to the root document first in order for the event listeners to work
-		RootPanel.get().add(layout);
-		
 		// find the DIV inside the google earth balloon
 		// and insert our widget
 		Element container = DOM.getElementById("gwt-widget-container");
 		if (container != null) {
+			// IMPORTANT: we must add to the root document first in order for the event listeners to work
+			RootPanel.get().add(layout);
+			
+			// Now add the widget to the DIV within the balloon.
 			DOM.insertChild(container, layout.getElement(), 0);
 		}
 	}
