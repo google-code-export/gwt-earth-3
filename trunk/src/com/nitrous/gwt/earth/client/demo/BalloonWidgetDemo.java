@@ -19,7 +19,6 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
@@ -78,10 +77,11 @@ public class BalloonWidgetDemo implements EntryPoint {
 				GEPlugin ge = earth.getGEPlugin();
 				
 				// Create a DIV balloon with an empty div
-				// A BalloonListener is used to insert a GWT widget into this DIV when the balloon is displayed 
+				// A BalloonListener is used to populate this balloon when the balloon is displayed 
 				GEHtmlDivBalloon balloon = ge.createHtmlDivBalloon("");
 				balloon.setCloseButtonEnabled(false);
-				balloon.setContentDiv("<div id='gwt-widget-container'></div>");
+				// Initialize the DIV element in the balloon that will serve as the parent of a GWT widget 
+				balloon.setContentDiv("");
 				balloon.setFeature(placemark); // optional
 				balloon.setMaxWidth(300);
 				ge.setBalloon(balloon);
