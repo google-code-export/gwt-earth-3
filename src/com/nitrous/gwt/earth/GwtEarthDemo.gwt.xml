@@ -14,12 +14,12 @@
 	<!-- Other module inherits                                      -->
 	<inherits name='com.nitrous.gwt.earth.GwtEarthAPI' />
 
-	<!-- Specify the app entry point class.                         -->
-	
-    <entry-point class='com.nitrous.gwt.earth.client.demo.BalloonWidgetDemo'/>   
+	<!-- Specify the app entry point class.                         -->	
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ApiLoadingDemo'/>   
 
 <!-- 
     Available entry point demo classes: 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ApiLoadingDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.BalloonWidgetDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.PolygonDrawingDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.PlacemarkNameClickDemo'/>   

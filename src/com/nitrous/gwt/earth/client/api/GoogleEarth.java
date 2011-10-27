@@ -18,10 +18,13 @@ package com.nitrous.gwt.earth.client.api;
 import java.util.Map;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
+import com.nitrous.gwt.earth.client.api.ajaxloader.AjaxLoader;
 import com.nitrous.gwt.earth.client.api.event.KmlEventListener;
 import com.nitrous.gwt.earth.client.api.event.KmlLoadCallback;
 
@@ -34,6 +37,40 @@ import com.nitrous.gwt.earth.client.api.event.KmlLoadCallback;
  */
 public final class GoogleEarth {    
     private GoogleEarth() {
+    }
+    
+	/**
+	 * Load the Google earth API.
+	 * 
+	 * This method can be used as an alternative to placing the following script
+	 * in the application host page:
+	 * 
+	 * <pre>
+	 *      &lt;!-- To generate a key for a real deployment, visit http://code.google.com/apis/maps/signup.html --&gt;
+	 *      &lt;script src="http://www.google.com/jsapi?key=YOUR_KEY_HERE"&gt&lt;/script&gt
+	 *      &lt;script type="text/javascript"&gt
+	 *         google.load("earth", "1");
+	 *      &lt;/script&gt
+	 * </pre>
+	 * 
+	 * @param key
+	 *            The Google Earth API key to be used. To generate a key visit <a href="http://code.google.com/apis/maps/signup.html">http://code.google.com/apis/maps/signup.html</a>
+	 */
+    public static void loadApi(final String key, final Runnable callback) {
+    	AjaxLoader.init(key);    	
+    	Runnable cb = new Runnable(){
+    		public void run() {
+		    	Scheduler.get().scheduleDeferred(new ScheduledCommand(){
+					@Override
+					public void execute() {
+						if (callback != null) {
+							callback.run();
+						}
+					}
+				});
+    		}
+    	};
+    	AjaxLoader.loadApi("earth", "1", cb, null); 
     }
     
     /**
