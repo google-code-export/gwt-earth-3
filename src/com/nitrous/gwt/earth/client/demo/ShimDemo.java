@@ -59,10 +59,10 @@ public class ShimDemo implements EntryPoint {
 		DockLayoutPanel layout = new DockLayoutPanel(Unit.PX);
 		layout.addNorth(
 			new HTML("Google Earth Shim Demo. " +
-					"You should see a SmartGWT window displayed over the Google Earth map below. " +
+					"You should see a Popup Panel displayed over the Google Earth map below. " +
 					"If not, your browser is not supported by this workaround.<br/>Source code here: " +
-					"<a href='http://code.google.com/p/smart-gwt-earth-shim-demo/'>" +
-					"http://code.google.com/p/smart-gwt-earth-shim-demo/</a>"),
+					"<a href='http://code.google.com/p/gwt-earth-3/source/browse/trunk/src/com/nitrous/gwt/earth/client/demo/ShimDemo.java'>" +
+					"http://code.google.com/p/gwt-earth-3/source/browse/trunk/src/com/nitrous/gwt/earth/client/demo/ShimDemo.java</a>"),
 					40);
 		layout.add(earth);
 		RootLayoutPanel.get().add(layout);
