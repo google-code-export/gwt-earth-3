@@ -29,8 +29,11 @@
 	</path>
 
 	<target name="javadoc" description="Generate JavaDoc">
-		<javadoc sourcepath="src" destdir="${javadoc.output.dir}" windowtitle="GWT-Earth-3-${jar.version}"
-			classpathref="project.class.path">
+		<javadoc destdir="${javadoc.output.dir}" windowtitle="GWT-Earth-3-${jar.version}" classpathref="project.class.path">
+			<fileset dir="src">
+				<exclude name="**/client/demo/**/*"/>
+                <exclude name="**/*.xml"/>
+			</fileset>
 		</javadoc>
 	</target>
 	<target name="package-javadoc" description="Generate and package the javadoc" depends="javadoc">
