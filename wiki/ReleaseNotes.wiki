@@ -1,7 +1,14 @@
 #labels Featured
+==3.07==
+===Released: Nov 15, 2011===
+  * Added Google Ajax API Loader (Issue 8)
+  * Updated all demos to use Google Ajax API Loader
+  * Fixed JSNI event callbacks for {{{MouseClickListener}}} in {{{GEEventEmitter}}}
+  * Removed {{{GEHtmlDivBalloon::setContent(Widget)}}} as this method was experimental and not very useful.
+  * Added demos: Placemark Click Demo, Drawing Demo, Balloon widget demo & Shim demo.
+----
 ==3.06==
 ===Released: Sep 13, 2011===
-
   * Fixes for Issue 5: Return type of {{{KmlMouseEvent.getDidHitGlobe()}}} incorrect (GWT Developer Plugin + Internet Explorer). http://code.google.com/p/gwt-earth-3/issues/detail?id=5&can=1
 
   * Modified {{{GoogleEarthWidget}}} to be a {{{Composite}}} Widget.
