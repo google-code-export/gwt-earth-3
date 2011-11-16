@@ -16,8 +16,6 @@
 package com.nitrous.gwt.earth.client.demo;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.nitrous.gwt.earth.client.api.GELayerId;
@@ -60,7 +58,7 @@ public class ApiLoadingDemo implements EntryPoint {
         // register a listener to be notified when the earth plug-in has loaded
         earth.addPluginReadyListener(new GEPluginReadyListener() {
             public void pluginReady(GEPlugin ge) {
-                // show map content once the plugin has loaded
+                // show map content once the plug-in has loaded
                 loadMapContent();
             }
 
