@@ -34,9 +34,12 @@ import com.nitrous.gwt.earth.client.api.KmlLookAt;
  * @author nick
  */
 public class MoveCameraWithTimerDemo implements EntryPoint {
-
-	/** To generate a key for a real deployment, visit http://code.google.com/apis/maps/signup.html */
-	private static final String EARTH_API_KEY = "ABQIAAAAfdPr40ksX4gg7ApZBtLBdBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRhjoUoh2xAXb7lvbOvvJrsDayXvg";
+	/** 
+	 * TODO: Replace EARTH_API_KEY with a key generated for your domain.
+	 * 
+	 * To generate a key for a real deployment, visit http://code.google.com/apis/maps/signup.html 
+	 */
+	private static final String EARTH_API_KEY = "ABQIAAAAfdPr40ksX4gg7ApZBtLBdBTJY-9JfItWUGQPJaUDtRwwITcegRRUqEyZAfd8MUbdcg1_osKHEIdPMg";
 
 	private GoogleEarthWidget earth;
 	private double oldFlyToSpeed;
