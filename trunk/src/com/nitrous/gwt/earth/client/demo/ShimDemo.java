@@ -121,7 +121,7 @@ public class ShimDemo implements EntryPoint {
 		final int left = window.getPopupLeft();
 		final int top = window.getPopupTop();
 
-		// Configure the z-index of the PopupPanel HTML contenbt so that it is rendered in-front of everything (highest z-index)
+		// Configure the z-index of the PopupPanel HTML content so that it is rendered in-front of everything (highest z-index)
 		content.getElement().setAttribute("style", 
 				  "z-index: " + (Integer.MAX_VALUE) + ";" 
 				+ " width: " + width + "px;" 
