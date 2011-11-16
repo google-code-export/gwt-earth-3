@@ -38,9 +38,26 @@ import com.nitrous.gwt.earth.client.api.event.KmlEventListener;
  */
 public class WindowEventHandlingDemo implements EntryPoint {
 
+	/** To generate a key for a real deployment, visit http://code.google.com/apis/maps/signup.html */
+	private static final String EARTH_API_KEY = "ABQIAAAAfdPr40ksX4gg7ApZBtLBdBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRhjoUoh2xAXb7lvbOvvJrsDayXvg";
+	
 	private GoogleEarthWidget earth;
 	
-	public void onModuleLoad() {
+    public void onModuleLoad() {
+    	// Load the Earth API
+    	GoogleEarth.loadApi(EARTH_API_KEY, new Runnable(){
+			@Override
+			public void run() {
+				// start the application
+				onApiLoaded();				
+			}    		
+    	});    	
+    }
+    
+    /**
+     * The Google earth API has loaded, start the application
+     */
+    private void onApiLoaded() {
 		// construct the UI widget
 		earth = new GoogleEarthWidget();
 
