@@ -34,10 +34,10 @@ import com.nitrous.gwt.earth.client.api.event.KmlLoadCallback;
  * 
  * Loads and executes a simple KML Tour
  * 
- * Simple tours, with the <gx:Tour> feature as the root-level feature of the KML, 
+ * Simple tours, with the &lt;gx:Tour&gt; feature as the root-level feature of the KML, 
  * can be fetched and passed directly to GETourPlayer. The tour must be the only feature 
  * in the KML file. If your KML doesn't meet these requirements, refer to the Complex tour example:
- * http://code.google.com/apis/earth/documentation/touring.html#complex_tour
+ * http://code.google.com/p/gwt-earth-3/source/browse/trunk/src/com/nitrous/gwt/earth/client/demo/ComplexKmlTourDemo.java
  * 
  * @author nick
  * 
