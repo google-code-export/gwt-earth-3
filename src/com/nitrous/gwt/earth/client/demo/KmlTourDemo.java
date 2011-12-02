@@ -26,7 +26,6 @@ import com.nitrous.gwt.earth.client.api.GEVisibility;
 import com.nitrous.gwt.earth.client.api.GoogleEarth;
 import com.nitrous.gwt.earth.client.api.GoogleEarthWidget;
 import com.nitrous.gwt.earth.client.api.KmlObject;
-import com.nitrous.gwt.earth.client.api.KmlPlacemark;
 import com.nitrous.gwt.earth.client.api.KmlTour;
 import com.nitrous.gwt.earth.client.api.event.KmlLoadCallback;
 
