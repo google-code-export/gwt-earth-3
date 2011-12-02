@@ -32,7 +32,9 @@ import com.nitrous.gwt.earth.client.api.event.KmlLoadCallback;
 /**
  * A GWT Implementation of the simple tour demo found here: http://code.google.com/apis/earth/documentation/touring.html
  * 
- * Loads and executes a simple KML Tour
+ * Loads and executes a simple KML Tour. The sample kml file can be found here:
+ * 
+ * This demo loads the kml file found here: http://code.google.com/p/gwt-earth-3/source/browse/trunk/war/kml/bounce_example.kml
  * 
  * Simple tours, with the &lt;gx:Tour&gt; feature as the root-level feature of the KML, 
  * can be fetched and passed directly to GETourPlayer. The tour must be the only feature 
@@ -40,7 +42,6 @@ import com.nitrous.gwt.earth.client.api.event.KmlLoadCallback;
  * http://code.google.com/p/gwt-earth-3/source/browse/trunk/src/com/nitrous/gwt/earth/client/demo/ComplexKmlTourDemo.java
  * 
  * @author nick
- * 
  */
 public class KmlTourDemo implements EntryPoint {
 
