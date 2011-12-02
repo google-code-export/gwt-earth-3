@@ -44,6 +44,8 @@ import com.nitrous.gwt.earth.client.api.event.KmlLoadCallback;
  * the KMLTour feature is found. In the example below, the KML file includes some placemarks and
  * features, which need to be loaded into Earth as well.
  * 
+ * This demo loads the sample kml file found here: http://code.google.com/p/gwt-earth-3/source/browse/trunk/war/kml/complete_tour_example.kml
+ * 
  * @author nick
  * 
  */
