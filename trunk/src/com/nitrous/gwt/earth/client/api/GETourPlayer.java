@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 Nick Kerr
+ * Copyright 2012 Nick Kerr
  *
  *   Licensed under the Apache License, Version 2.0 (the "License");
  *   you may not use this file except in compliance with the License.
@@ -31,6 +31,13 @@ public class GETourPlayer extends JavaScriptObject {
     protected GETourPlayer() {
     }
 
+    /**
+     * @return The GETourPlayerControl
+     */
+    public final native GETourPlayerControl getControl() /*-{
+        return this.getControl();
+    }-*/;
+    
     /**
      * Enters the given tour object, exiting any other currently active tour.
      * This method does not automatically begin playing the tour. If the

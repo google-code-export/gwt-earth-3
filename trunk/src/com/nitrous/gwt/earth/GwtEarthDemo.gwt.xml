@@ -15,10 +15,11 @@
 	<inherits name='com.nitrous.gwt.earth.GwtEarthAPI' />
 
 	<!-- Specify the app entry point class.                         -->	
-    <entry-point class='com.nitrous.gwt.earth.client.demo.ComplexKmlTourDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.Api1009FeatureTestDemo'/>   
 
 <!-- 
     Available entry point demo classes: 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.Api1009FeatureTestDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.ComplexKmlTourDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.KmlTourDemo'/>   
     <entry-point class='com.nitrous.gwt.earth.client.demo.ShimDemo'/>   

@@ -16,6 +16,7 @@
 package com.nitrous.gwt.earth.client.demo;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -23,26 +24,24 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.gwt.earth.client.api.GELayerId;
 import com.nitrous.gwt.earth.client.api.GEPlugin;
 import com.nitrous.gwt.earth.client.api.GEPluginReadyListener;
 import com.nitrous.gwt.earth.client.api.GEVisibility;
 import com.nitrous.gwt.earth.client.api.GoogleEarth;
 import com.nitrous.gwt.earth.client.api.GoogleEarthWidget;
-import com.nitrous.gwt.earth.client.api.KmlLink;
-import com.nitrous.gwt.earth.client.api.KmlNetworkLink;
+import com.nitrous.gwt.earth.client.api.KmlObject;
+import com.nitrous.gwt.earth.client.api.KmlTour;
+import com.nitrous.gwt.earth.client.api.event.KmlLoadCallback;
 
 /**
- * A demo that shows how to create network links.
- * 
- * A GWT implementation of the demo found <a href="http://code.google.com/apis/ajax/playground/#creating_network_links">here</a>.
- * 
+ * A demo to test the new features offered by version 1.009 of the Google Earth JavaScript API.
+ * See 1.009 Release notes <a href="http://code.google.com/apis/earth/documentation/releasenotes.html">here</a>
  * @author nick
- * 
  */
-public class NetworkLinkDemo implements EntryPoint {
+public class Api1009FeatureTestDemo implements EntryPoint {
 
 	/** 
 	 * TODO: Replace EARTH_API_KEY with a key generated for your domain.
@@ -84,20 +83,20 @@ public class NetworkLinkDemo implements EntryPoint {
 			}
 		});
 
-		Button createButton = new Button("Create a Network Link!");
-		createButton.addClickHandler(new ClickHandler() {
+		Button visibilityButton = new Button("Toggle Tour Control Visibility");
+		visibilityButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				createNetworkLink();
+				GEPlugin ge = earth.getGEPlugin();
+				boolean isVisible =	ge.getTourPlayer().getControl().isVisible();
+				ge.getTourPlayer().getControl().setVisibile(!isVisible);
 			}
 		});
-		HorizontalPanel buttons = new HorizontalPanel();
-		buttons.add(createButton);
-
-		HorizontalPanel topPanel = new HorizontalPanel();
+		
+		VerticalPanel topPanel = new VerticalPanel();
 		topPanel.setWidth("100%");
 		topPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		topPanel.add(buttons);
+		topPanel.add(visibilityButton);
 
 		DockLayoutPanel layout = new DockLayoutPanel(Unit.PX);
 		layout.addNorth(topPanel, 40D);
@@ -112,36 +111,27 @@ public class NetworkLinkDemo implements EntryPoint {
 	 * Display content on the map
 	 */
 	private void loadMapContent() {
-		// The GEPlugin is the core class and is a great place to start browsing
-		// the API
-		GEPlugin ge = earth.getGEPlugin();
+		// The GEPlugin is the core class and is a great place to start browsing the API
+		final GEPlugin ge = earth.getGEPlugin();
 		ge.getWindow().setVisibility(true);
 
 		// add a navigation control
 		ge.getNavigationControl().setVisibility(GEVisibility.VISIBILITY_AUTO);
-
+		
 		// add some layers
 		ge.enableLayer(GELayerId.LAYER_BORDERS, true);
 		ge.enableLayer(GELayerId.LAYER_ROADS, true);
 
-		createNetworkLink();
+		// load the KML
+		String href = GWT.getHostPageBaseURL() + "kml/bounce_example.kml";
+		GoogleEarth.fetchKml(ge, href, new KmlLoadCallback(){
+			@Override
+			public void onLoaded(KmlObject feature) {
+				// play the tour
+				ge.getTourPlayer().setTour((KmlTour)feature);
+				ge.getTourPlayer().play();
+			}
+		});
 	}
 
-	private void createNetworkLink() {
-		GEPlugin ge = earth.getGEPlugin();
-		KmlNetworkLink networkLink = ge.createNetworkLink("");
-		networkLink.setDescription("NetworkLink open to fetched content");
-		networkLink.setName("Open NetworkLink");
-		networkLink.setFlyToView(true);
-
-		// create a Link object
-		KmlLink link = ge.createLink("");
-		link.setHref("http://kml-samples.googlecode.com/svn/trunk/kml/NetworkLink/placemark.kml");
-
-		// attach the Link to the NetworkLink
-		networkLink.setLink(link);
-
-		// add the NetworkLink feature to Earth
-		ge.getFeatures().appendChild(networkLink);
-	}
 }
