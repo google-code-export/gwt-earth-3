@@ -31,6 +31,8 @@ public class GETourPlayerControl extends JavaScriptObject {
     }
 
     /**
+     * Returns True if the tour player control is visible, otherwise false
+     * 
      * @return True if the tour player control is visible, otherwise false
      */
     public final boolean isVisible() {

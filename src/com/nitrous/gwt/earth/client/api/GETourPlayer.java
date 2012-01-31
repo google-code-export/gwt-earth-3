@@ -32,6 +32,7 @@ public class GETourPlayer extends JavaScriptObject {
     }
 
     /**
+     * Returns the GETourPlayerControl
      * @return The GETourPlayerControl
      */
     public final native GETourPlayerControl getControl() /*-{
