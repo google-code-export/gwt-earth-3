@@ -145,6 +145,16 @@ public class Api1009FeatureTestDemo implements EntryPoint {
 			
 		});
 		
+		// get loop
+		Button isLoopButton = new Button("Is Loop?");
+		isLoopButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {				
+				GEPlugin ge = earth.getGEPlugin();
+				Window.alert("Loop = "+ge.getTourPlayer().getLoop());
+			}
+		});
+		
 		HorizontalPanel topPanel = new HorizontalPanel();
 		//topPanel.setWidth("100%");
 		topPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
@@ -152,6 +162,7 @@ public class Api1009FeatureTestDemo implements EntryPoint {
 		topPanel.add(showSpeedButton);
 		topPanel.add(speedIncreaseButton);
 		topPanel.add(speedDecreaseButton);
+		topPanel.add(isLoopButton);		
 		topPanel.add(loopCheck);
 
 		DockLayoutPanel layout = new DockLayoutPanel(Unit.PX);
