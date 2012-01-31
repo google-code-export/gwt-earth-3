@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='gwtearthdemo'>
+	<!-- Inherit the core Web Toolkit stuff.                        -->
+	<inherits name='com.google.gwt.user.User' />
+
+	<!-- Inherit the default GWT style sheet.  You can change       -->
+	<!-- the theme of your GWT application by uncommenting          -->
+	<!-- any one of the following lines.                            -->
+	<inherits name='com.google.gwt.user.theme.clean.Clean' />
+	<!-- <inherits name='com.google.gwt.user.theme.standard.Standard'/> -->
+	<!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
+	<!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+
+	<!-- Other module inherits                                      -->
+	<inherits name='com.nitrous.gwt.earth.GwtEarthAPI' />
+
+	<!-- Specify the app entry point class.                         -->	
+    <entry-point class='com.nitrous.gwt.earth.client.demo.Api1009FeatureTestDemo'/>   
+
+<!-- 
+    Available entry point demo classes: 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.Api1009FeatureTestDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ComplexKmlTourDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.KmlTourDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ShimDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ApiLoadingDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.BalloonWidgetDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.PolygonDrawingDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.PlacemarkNameClickDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.TerrainDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.SkyModeDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.NavigationControlDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.MarsDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.BuildingDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.DuskToDawnDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.GrayBuildingDemo'/>       
+    <entry-point class='com.nitrous.gwt.earth.client.demo.GroundAltitudeDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.HitTestingDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ScreenOverlayFrameDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ScreenOverlayDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.GroundOverlayDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.TiltCameraDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.MoveCameraWithTimerDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.MoveCameraDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.PlacemarkClickHandlingDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.WindowEventHandlingDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ToggleEventListenerDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.YouTubeBalloonDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.JavaScriptBalloonDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ChangingBalloonContentDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.HtmlDivBalloonDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.HtmlStringBalloonDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.FeatureBalloonDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.CreatingMultiGeoPlacemarkDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.Creating3DModelsDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.PolygonStylingDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.CreateCirclePolygonsDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.CreatePolygonsDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.LineStringStyleDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.CreateLineStringsDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.DraggablePlacemarkDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.UnderwaterPlacemarkDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.CreatingPlacemarksDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ParseKmlInteractive'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.TimeAwareKmlDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.FetchKmlInteractiveCheckboxes'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.FetchKmlInteractive'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ExecuteBatchDemo'/>   
+    <entry-point class='com.nitrous.gwt.earth.client.demo.FetchBadKmlDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.FetchGoodKmlDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.NetworkLinkDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ParseKmlDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.PlacemarkStyleMapDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.KmlExtendedDataDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.HelloWorldDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.MouseListenerDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.BalloonListenerDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ClosingBalloonsDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.FrameEndDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.ViewChangeDemo'/> 
+    <entry-point class='com.nitrous.gwt.earth.client.demo.MovingPlacemarkDemo'/>   
+ -->
+
+	<!-- Specify the paths for translatable code                    -->
+	<source path='client/demo' />
+
+</module>
