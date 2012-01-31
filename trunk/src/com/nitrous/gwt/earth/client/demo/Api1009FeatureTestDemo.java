@@ -24,8 +24,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.gwt.earth.client.api.GELayerId;
 import com.nitrous.gwt.earth.client.api.GEPlugin;
 import com.nitrous.gwt.earth.client.api.GEPluginReadyListener;
@@ -83,6 +83,7 @@ public class Api1009FeatureTestDemo implements EntryPoint {
 			}
 		});
 
+		// tour visibility
 		Button visibilityButton = new Button("Toggle Tour Control Visibility");
 		visibilityButton.addClickHandler(new ClickHandler() {
 			@Override
@@ -93,10 +94,70 @@ public class Api1009FeatureTestDemo implements EntryPoint {
 			}
 		});
 		
-		VerticalPanel topPanel = new VerticalPanel();
+		// Get tour speed
+		Button showSpeedButton = new Button("Get Tour Speed");
+		showSpeedButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {				
+				GEPlugin ge = earth.getGEPlugin();
+				Window.alert("Tour speed = " + ge.getTourPlayer().getCurrentSpeed());
+			}
+		});
+		
+		// Increase tour speed
+		Button speedIncreaseButton = new Button("Speed++");
+		speedIncreaseButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {				
+				GEPlugin ge = earth.getGEPlugin();
+				ge.getTourPlayer().setCurrentSpeed(ge.getTourPlayer().getCurrentSpeed()+1);
+			}
+		});
+		
+		// Decrease tour speed
+		Button speedDecreaseButton = new Button("Speed--");
+		speedDecreaseButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {				
+				GEPlugin ge = earth.getGEPlugin();
+				float speed = ge.getTourPlayer().getCurrentSpeed();
+				speed = speed -1;
+				if (speed < 0) {
+					speed = 0;
+				}
+				ge.getTourPlayer().setCurrentSpeed(speed);
+			}
+		});
+		
+		// Show loop
+		Button isLoopButton = new Button("Is Looping?");
+		isLoopButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {				
+				GEPlugin ge = earth.getGEPlugin();
+				Window.alert("Is Looping = "+ge.getTourPlayer().isLoop());
+			}
+		});
+		
+		// Toggle loop
+		Button loopToggleButton = new Button("Toggle Loop");
+		loopToggleButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {				
+				GEPlugin ge = earth.getGEPlugin();
+				ge.getTourPlayer().setLoop(!ge.getTourPlayer().isLoop());
+			}
+		});
+		
+		HorizontalPanel topPanel = new HorizontalPanel();
 		topPanel.setWidth("100%");
 		topPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		topPanel.add(visibilityButton);
+		topPanel.add(showSpeedButton);
+		topPanel.add(speedIncreaseButton);
+		topPanel.add(speedDecreaseButton);
+		topPanel.add(isLoopButton);
+		topPanel.add(loopToggleButton);
 
 		DockLayoutPanel layout = new DockLayoutPanel(Unit.PX);
 		layout.addNorth(topPanel, 40D);
