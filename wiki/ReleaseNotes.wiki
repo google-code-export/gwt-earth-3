@@ -1,4 +1,14 @@
 #labels Featured
+==3.08==
+===Released: Jan 30, 2012===
+  * Adding support for the new Google Earth JavaScript API 1.009 functions:
+    * Added GETourPlayer.getLoop and GETourPlayer.setLoop
+    * Added GETourPlayer.getCurrentSpeed and GETourPlayer.setCurrentSpeed.
+    * Added GETourPlayer.getControl.
+    * Added GETourPlayerControl.getVisiblity and GETourPlayerControl.setVisiblity.
+  * Updated JavaDoc to exclude demo classes.
+  * Added KML tour demos
+----
 ==3.07==
 ===Released: Nov 15, 2011===
   * Added Google Ajax API Loader (Issue 8)
