@@ -20,8 +20,11 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -51,6 +54,8 @@ public class Api1009FeatureTestDemo implements EntryPoint {
 	private static final String EARTH_API_KEY = "ABQIAAAAfdPr40ksX4gg7ApZBtLBdBTJY-9JfItWUGQPJaUDtRwwITcegRRUqEyZAfd8MUbdcg1_osKHEIdPMg";
 
 	private GoogleEarthWidget earth;
+	
+	private CheckBox loopCheck;
 	
     public void onModuleLoad() {
     	// Load the Earth API
@@ -129,35 +134,25 @@ public class Api1009FeatureTestDemo implements EntryPoint {
 			}
 		});
 		
-		// Show loop
-		Button isLoopButton = new Button("Is Looping?");
-		isLoopButton.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {				
-				GEPlugin ge = earth.getGEPlugin();
-				Window.alert("Is Looping = "+ge.getTourPlayer().isLoop());
-			}
-		});
-		
 		// Toggle loop
-		Button loopToggleButton = new Button("Toggle Loop");
-		loopToggleButton.addClickHandler(new ClickHandler() {
+		loopCheck = new CheckBox("Loop");
+		loopCheck.addValueChangeHandler(new ValueChangeHandler<Boolean>(){
 			@Override
-			public void onClick(ClickEvent event) {				
+			public void onValueChange(ValueChangeEvent<Boolean> event) {
 				GEPlugin ge = earth.getGEPlugin();
-				ge.getTourPlayer().setLoop(!ge.getTourPlayer().isLoop());
+				ge.getTourPlayer().setLoop(event.getValue());
 			}
+			
 		});
 		
 		HorizontalPanel topPanel = new HorizontalPanel();
-		topPanel.setWidth("100%");
-		topPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		//topPanel.setWidth("100%");
+		topPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		topPanel.add(visibilityButton);
 		topPanel.add(showSpeedButton);
 		topPanel.add(speedIncreaseButton);
 		topPanel.add(speedDecreaseButton);
-		topPanel.add(isLoopButton);
-		topPanel.add(loopToggleButton);
+		topPanel.add(loopCheck);
 
 		DockLayoutPanel layout = new DockLayoutPanel(Unit.PX);
 		layout.addNorth(topPanel, 40D);
@@ -191,6 +186,7 @@ public class Api1009FeatureTestDemo implements EntryPoint {
 				// play the tour
 				ge.getTourPlayer().setTour((KmlTour)feature);
 				ge.getTourPlayer().play();
+				ge.getTourPlayer().setLoop(loopCheck.getValue());
 			}
 		});
 	}

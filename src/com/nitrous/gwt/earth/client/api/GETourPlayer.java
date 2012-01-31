@@ -121,16 +121,6 @@ public class GETourPlayer extends JavaScriptObject {
     }-*/;
     
     /**
-     * Returns true if the active tour is configured to loop.
-     * 
-     * @return true if the active tour is configured to loop.
-     * @Since Google Earth JavaScript API Version v1.009
-     */
-    public final native boolean isLoop() /*-{
-    	return this.isLoop();
-    }-*/;
-    
-    /**
      * Specify whether the active tour should loop.
      * 
      * @param loop True to loop the active tour
