@@ -20,9 +20,9 @@ import com.google.gwt.core.client.JavaScriptObject;
 /**
  * This interface provides access to the visibility controls of the GE Tour Control.
  * 
- * @see KmlTourPlayer
+ * @see GETourPlayer
  * 
- * @Since Google Earth JavaScript API Version v1.009
+ * @since Google Earth JavaScript API Version v1.009
  * @author Nick
  * 
  */
@@ -43,7 +43,7 @@ public class GETourPlayerControl extends JavaScriptObject {
     /**
      * Hide or show the tour player control
      * 
-     * @param visibile True to show the control, false to hide it.
+     * @param visible True to show the control, false to hide it.
      */
     public final void setVisibile(boolean visible) {
         setVisibilityNative(visible ? 1 : 0);
