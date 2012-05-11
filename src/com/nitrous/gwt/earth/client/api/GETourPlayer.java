@@ -105,7 +105,7 @@ public class GETourPlayer extends JavaScriptObject {
      * The current speed of the active tour.
      * 
      * @return The current speed of the active tour.
-     * @Since Google Earth JavaScript API Version v1.009
+     * @since Google Earth JavaScript API Version v1.009
      */
     public final native float getCurrentSpeed() /*-{
         return this.getCurrentSpeed();
@@ -115,7 +115,7 @@ public class GETourPlayer extends JavaScriptObject {
      * The current speed of the active tour.
      * 
      * @param speed The speed to set for the active tour
-     * @Since Google Earth JavaScript API Version v1.009
+     * @since Google Earth JavaScript API Version v1.009
      */
     public final native void setCurrentSpeed(float speed) /*-{
         this.setCurrentSpeed(speed);
@@ -125,7 +125,7 @@ public class GETourPlayer extends JavaScriptObject {
      * Specify whether the active tour should loop.
      * 
      * @param loop True to loop the active tour
-     * @Since Google Earth JavaScript API Version v1.009
+     * @since Google Earth JavaScript API Version v1.009
      */
     public final native void setLoop(boolean loop) /*-{
         this.setLoop(loop);
@@ -135,7 +135,7 @@ public class GETourPlayer extends JavaScriptObject {
      * Returns whether the active tour is configured to loop.
      * 
      * @return loop True if the active tour is currently configured to loop.
-     * @Since Google Earth JavaScript API Version v1.009
+     * @since Google Earth JavaScript API Version v1.009
      */
     public final native boolean getLoop() /*-{
         return this.getLoop();
