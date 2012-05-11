@@ -38,6 +38,14 @@ import com.nitrous.gwt.earth.client.api.event.KmlLoadCallback;
 public final class GoogleEarth {    
     private GoogleEarth() {
     }
+
+    /**
+     * Load the Google earth API
+     * @param callback The Runnable to be executed once the API has loaded or null.
+     */
+    public static void loadApi(Runnable callback) {
+    	loadApi(null, callback);
+    }
     
 	/**
 	 * Load the Google earth API.
@@ -55,6 +63,8 @@ public final class GoogleEarth {
 	 * 
 	 * @param key
 	 *            The Google Earth API key to be used. To generate a key visit <a href="http://code.google.com/apis/maps/signup.html">http://code.google.com/apis/maps/signup.html</a>
+	 * @param callback The callback to be executed once API has loaded or null
+	 * @deprecated Google Earth no-longer requires a key. Use {@link #loadApi(Runnable callback)} instead.
 	 */
     public static void loadApi(final String key, final Runnable callback) {
     	AjaxLoader.init(key);    	
