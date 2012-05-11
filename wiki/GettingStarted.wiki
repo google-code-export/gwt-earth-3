@@ -2,13 +2,10 @@
 #labels Featured
 
 =Getting Started=
-  # Visit [http://code.google.com/apis/maps/signup.html http://code.google.com/apis/maps/signup.html] to sign up for an Earth Key for your domain. For development purposes you can enter a host name of 'localhost'. Make a note of the key that is generated as it will be needed in your code to load the Google Earth API. 
-
   # Add the following module import to your GWT module:  
 {{{
       <inherits name='com.nitrous.gwt.earth.GwtEarthAPI'/>
 }}}
-
   # Add the following to your project CSS file:
 {{{
     .map3dcontainer {
@@ -21,9 +18,6 @@
 	height: 100%;
     }
 }}}
-
   # Add [http://code.google.com/p/gwt-earth-3/downloads/list GwtEarth3-x.x.jar] to your project build path
-
   # See [https://code.google.com/p/gwt-earth-3/source/browse/trunk/src/com/nitrous/gwt/earth/client/demo/HelloWorldDemo.java HelloWorldDemo.java] for an example of how to get started with the code.
-
   # See Other demos and sample code [http://gwt-earth-demos.appspot.com/#HelloWorldDemo here].
