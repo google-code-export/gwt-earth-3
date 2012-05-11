@@ -2,4 +2,4 @@
 gwt.sdk=/Users/nick/work/java/GWT/gwt-2.4.0-rc1
 
 # Build version
-jar.version=0.6
+jar.version=0.9
