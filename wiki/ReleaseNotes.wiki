@@ -1,4 +1,13 @@
 #labels Featured
+==3.09==
+===Released: May 11, 2012===
+  * Minor updates eliminating the need to provide an API key when loading the Google Earth API:
+    * Updated {{{com.nitrousgwt.earth.client.api.GoogleEarth}}}
+      * deprecated {{{loadApi(key, Runnable)}}}
+      * added {{{loadApi(Runnable)}}}
+    * Updated all sample code to use new {{{GoogleEarth::loadApi(Runnable)}}} method and removed API keys.
+    * Minor JavaDoc fixes.
+----
 ==3.08==
 ===Released: Jan 30, 2012===
   * Adding support for the new Google Earth JavaScript API 1.009 functions:
