@@ -17,6 +17,8 @@ package com.nitrous.gwt.earth.client.demo;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -46,9 +48,15 @@ import com.nitrous.gwt.earth.client.api.event.KmlLoadCallback;
  */
 public class Api1009FeatureTestDemo implements EntryPoint {
 
-	private GoogleEarthWidget earth;
+	private GEPlugin gePlugin;
 	
 	private CheckBox loopCheck;
+	
+	private Button visibilityButton;
+	private Button showSpeedButton;
+	private Button speedIncreaseButton;
+	private Button speedDecreaseButton;
+	private Button isLoopButton;
 	
     public void onModuleLoad() {
     	// Load the Earth API
@@ -66,11 +74,12 @@ public class Api1009FeatureTestDemo implements EntryPoint {
      */
     private void onApiLoaded() {
 		// construct the UI widget
-		earth = new GoogleEarthWidget();
+    	GoogleEarthWidget earth = new GoogleEarthWidget();
 
 		// register a listener to be notified when the earth plug-in has loaded
 		earth.addPluginReadyListener(new GEPluginReadyListener() {
 			public void pluginReady(GEPlugin ge) {
+				gePlugin = ge;
 				// show map content once the plugin has loaded
 				loadMapContent();
 			}
@@ -82,48 +91,44 @@ public class Api1009FeatureTestDemo implements EntryPoint {
 		});
 
 		// tour visibility
-		Button visibilityButton = new Button("Toggle Tour Control Visibility");
+		visibilityButton = new Button("Toggle Tour Control Visibility");
 		visibilityButton.addClickHandler(new ClickHandler() {
 			@Override
-			public void onClick(ClickEvent event) {
-				GEPlugin ge = earth.getGEPlugin();
-				boolean isVisible =	ge.getTourPlayer().getControl().isVisible();
-				ge.getTourPlayer().getControl().setVisibile(!isVisible);
+			public void onClick(ClickEvent event) {				
+				boolean isVisible =	gePlugin.getTourPlayer().getControl().isVisible();
+				gePlugin.getTourPlayer().getControl().setVisibile(!isVisible);
 			}
 		});
 		
 		// Get tour speed
-		Button showSpeedButton = new Button("Get Tour Speed");
+		showSpeedButton = new Button("Get Tour Speed");
 		showSpeedButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {				
-				GEPlugin ge = earth.getGEPlugin();
-				Window.alert("Tour speed = " + ge.getTourPlayer().getCurrentSpeed());
+				Window.alert("Tour speed = " + gePlugin.getTourPlayer().getCurrentSpeed());
 			}
 		});
 		
 		// Increase tour speed
-		Button speedIncreaseButton = new Button("Speed++");
+		speedIncreaseButton = new Button("Speed++");
 		speedIncreaseButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {				
-				GEPlugin ge = earth.getGEPlugin();
-				ge.getTourPlayer().setCurrentSpeed(ge.getTourPlayer().getCurrentSpeed()+1);
+				gePlugin.getTourPlayer().setCurrentSpeed(gePlugin.getTourPlayer().getCurrentSpeed()+1);
 			}
 		});
 		
 		// Decrease tour speed
-		Button speedDecreaseButton = new Button("Speed--");
+		speedDecreaseButton = new Button("Speed--");
 		speedDecreaseButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {				
-				GEPlugin ge = earth.getGEPlugin();
-				float speed = ge.getTourPlayer().getCurrentSpeed();
+				float speed = gePlugin.getTourPlayer().getCurrentSpeed();
 				speed = speed -1;
 				if (speed < 0) {
 					speed = 0;
 				}
-				ge.getTourPlayer().setCurrentSpeed(speed);
+				gePlugin.getTourPlayer().setCurrentSpeed(speed);
 			}
 		});
 		
@@ -132,24 +137,21 @@ public class Api1009FeatureTestDemo implements EntryPoint {
 		loopCheck.addValueChangeHandler(new ValueChangeHandler<Boolean>(){
 			@Override
 			public void onValueChange(ValueChangeEvent<Boolean> event) {
-				GEPlugin ge = earth.getGEPlugin();
-				ge.getTourPlayer().setLoop(event.getValue());
+				gePlugin.getTourPlayer().setLoop(event.getValue());
 			}
 			
 		});
 		
 		// get loop
-		Button isLoopButton = new Button("Is Loop?");
+		isLoopButton = new Button("Is Loop?");
 		isLoopButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {				
-				GEPlugin ge = earth.getGEPlugin();
-				Window.alert("Loop = "+ge.getTourPlayer().getLoop());
+				Window.alert("Loop = "+gePlugin.getTourPlayer().getLoop());
 			}
 		});
 		
 		HorizontalPanel topPanel = new HorizontalPanel();
-		//topPanel.setWidth("100%");
 		topPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		topPanel.add(visibilityButton);
 		topPanel.add(showSpeedButton);
@@ -163,34 +165,62 @@ public class Api1009FeatureTestDemo implements EntryPoint {
 		layout.add(earth);
 		RootLayoutPanel.get().add(layout);
 
+		// disable the API testing buttons until the tour has been loaded
+		enableButtons(false);
+		
 		// begin loading the Google Earth Plug-in
 		earth.init();
 	}
+    
+    /**
+     * Enable or disable the API test buttons
+     * @param enable True to enable, false to disable
+     */
+    private void enableButtons(boolean enable) {
+    	visibilityButton.setEnabled(enable);
+    	showSpeedButton.setEnabled(enable);
+    	speedDecreaseButton.setEnabled(enable);
+    	speedIncreaseButton.setEnabled(enable);
+    	isLoopButton.setEnabled(enable);
+    	loopCheck.setEnabled(enable);
+    }
 
 	/**
 	 * Display content on the map
 	 */
 	private void loadMapContent() {
 		// The GEPlugin is the core class and is a great place to start browsing the API
-		final GEPlugin ge = earth.getGEPlugin();
-		ge.getWindow().setVisibility(true);
+		gePlugin.getWindow().setVisibility(true);
 
 		// add a navigation control
-		ge.getNavigationControl().setVisibility(GEVisibility.VISIBILITY_AUTO);
+		gePlugin.getNavigationControl().setVisibility(GEVisibility.VISIBILITY_AUTO);
 		
 		// add some layers
-		ge.enableLayer(GELayerId.LAYER_BORDERS, true);
-		ge.enableLayer(GELayerId.LAYER_ROADS, true);
+		gePlugin.enableLayer(GELayerId.LAYER_BORDERS, true);
+		gePlugin.enableLayer(GELayerId.LAYER_ROADS, true);
 
 		// load the KML
 		String href = GWT.getHostPageBaseURL() + "kml/bounce_example.kml";
-		GoogleEarth.fetchKml(ge, href, new KmlLoadCallback(){
+		GoogleEarth.fetchKml(gePlugin, href, new KmlLoadCallback(){
 			@Override
 			public void onLoaded(KmlObject feature) {
+				if (feature == null) {
+					// defer display of alert to prevent deadlock in some browsers
+                    Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+                        @Override
+                        public void execute() {
+                            Window.alert("Failed to load KML.");
+                        }
+                    });
+                    return;
+				}
 				// play the tour
-				ge.getTourPlayer().setTour((KmlTour)feature);
-				ge.getTourPlayer().play();
-				ge.getTourPlayer().setLoop(loopCheck.getValue());
+				gePlugin.getTourPlayer().setTour((KmlTour)feature);
+				gePlugin.getTourPlayer().play();
+				gePlugin.getTourPlayer().setLoop(loopCheck.getValue());
+				
+				// enable the API test buttons
+				enableButtons(true);
 			}
 		});
 	}
