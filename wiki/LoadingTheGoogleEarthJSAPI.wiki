@@ -1,7 +1,7 @@
 #summary How to load the Google Earth JavaScript API
 #labels Featured,Phase-Implementation
 = Introduction =
-The GWT-Earth-3 API is a GWT wrapper (overlay) for the Google Earth !JavaScript API. It is therefore necessary to load the Google Earth !JavaScript API at runtime. Release 3-0.7 of the GWT-Earth API introduced the ability to load the Google Earth API using Java code. This page describes two approaches that can be used to load the Google Earth JavaScript API.
+The GWT-Earth-3 API is a GWT wrapper (overlay) for the Google Earth !JavaScript API. It is therefore necessary to load the Google Earth !JavaScript API at runtime. Release 3-0.7 of the GWT-Earth API introduced the ability to load the Google Earth API using Java code. This page describes two approaches that can be used to load the Google Earth !JavaScript API.
 
 = Details =
 
