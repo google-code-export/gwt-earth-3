@@ -6,16 +6,16 @@
       * deprecated {{{loadApi(key, Runnable)}}}
       * added {{{loadApi(Runnable)}}}
     * Updated all sample code to use new {{{GoogleEarth::loadApi(Runnable)}}} method and removed API keys.
-    * Minor JavaDoc fixes.
+    * Minor !JavaDoc fixes.
 ----
 ==3.08==
 ===Released: Jan 30, 2012===
-  * Adding support for the new Google Earth JavaScript API 1.009 functions:
+  * Adding support for the new Google Earth !JavaScript API 1.009 functions:
     * Added GETourPlayer.getLoop and GETourPlayer.setLoop
     * Added GETourPlayer.getCurrentSpeed and GETourPlayer.setCurrentSpeed.
     * Added GETourPlayer.getControl.
     * Added GETourPlayerControl.getVisiblity and GETourPlayerControl.setVisiblity.
-  * Updated JavaDoc to exclude demo classes.
+  * Updated !JavaDoc to exclude demo classes.
   * Added KML tour demos
 ----
 ==3.07==
@@ -37,7 +37,7 @@
   * Fixed access modifier on {{{GoogleEarth::addEventListener}}} methods.
   * Fixed return type of {{{KmlEvent::getTarget()}}}
   * Added {{{getType()}}} to {{{GEAbstractBalloon}}}
-  * Updated JavaDoc for each demo to include a URL to the original JavaScript demo.
+  * Updated !JavaDoc for each demo to include a URL to the original !JavaScript demo.
   * Moved {{{getType()}}} from {{{KmlObject}}} to to {{{GESchemaObject}}}
   * Added {{{getTimeStamp()}}} to {{{KmlEvent}}}
   * Added many demos
@@ -46,11 +46,11 @@
 ===Released: Aug 30, 2011===
 *IMPORTANT NOTE*: {{{ge.getWindow().setVisibility(true)}}} must now be called manually after the {{{GEPlugin}}} is loaded. Previously, the {{{GoogleEarthWidget}}} was calling this automatically but that code has now been removed.
 
-  * Added GoogleEarth class that provides the {{{google.earth}}} namespace functionality.
+  * Added !GoogleEarth class that provides the {{{google.earth}}} namespace functionality.
   * Added batch execution support.
   * Added demos
   * Fixed method access modifiers in {{{KmlExtrudableGeometry}}}
-  * Fixed some JavaDoc links
+  * Fixed some !JavaDoc links
   * Modified {{{GoogleEarthWidget}}} to use the new {{{GoogleEarth}}} class for {{{google.earth}}} namespace function calls such as {{{createInstance()}}}
 ----
 ==3.03==
