@@ -34,21 +34,30 @@ import com.google.gwt.user.client.ui.HTML;
 public class GoogleEarthWidget extends Composite {
 	private static int id = 0;
 	private GEPlugin gePlugin;
-	private ArrayList<GEPluginReadyListener> pluginReadyListeners = new ArrayList<GEPluginReadyListener>();
-
 	private String containerId;
+	
+	protected ArrayList<GEPluginReadyListener> pluginReadyListeners = new ArrayList<GEPluginReadyListener>();
 	
 	/**
 	 * Constructor
 	 */
 	public GoogleEarthWidget() {
-		containerId = "map3d"+id;
+		int myId = id++;
+		containerId = "map3d"+myId;
 		HTML container = new HTML(
-				"<div class='map3dcontainer' id='map3dcontainer" + id + "'>" + 
+				"<div class='map3dcontainer' id='map3dcontainer" + myId + "'>" + 
 				"<div class='map3d' id='" + containerId + "'></div></div>");
 		initWidget(container);
 	}
-		
+	
+	/**
+	 * Returns the ID of the DIV that holds the Google Earth Plugin
+	 * @return The ID of the container that holds the GE Plugin.
+	 */
+	public String getContainerId() {
+		return containerId;
+	}
+	
 	/**
 	 * Begin loading the Google Earth Plugin
 	 */
@@ -161,10 +170,9 @@ public class GoogleEarthWidget extends Composite {
 	 * Notify registered listeners that the plug-in is ready
 	 * @param ge The reference to the plug-in that is ready.
 	 */
-	private void onInitSuccess(GEPlugin ge) {
+	protected void onInitSuccess(GEPlugin ge) {
 		this.gePlugin = ge;
 		this.gePlugin.bindConstants();
-		id++;
 		GEPluginReadyListener[] arr = pluginReadyListeners.toArray(new GEPluginReadyListener[pluginReadyListeners.size()]); 
 		for (GEPluginReadyListener listener : arr) {
 			listener.pluginReady(ge);
@@ -174,7 +182,7 @@ public class GoogleEarthWidget extends Composite {
 	/**
 	 * Notify registered listeners that the plug-in failed to initialize
 	 */
-	private void onInitFailure(String err) {
+	protected void onInitFailure(String err) {
 		GWT.log("Failed to initialize Google Earth Plugin: "+err);
 		GEPluginReadyListener[] arr = pluginReadyListeners.toArray(new GEPluginReadyListener[pluginReadyListeners.size()]); 
 		for (GEPluginReadyListener listener : arr) {
