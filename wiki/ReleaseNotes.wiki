@@ -1,4 +1,15 @@
 #labels Featured
+==3.10==
+===Released: September 05, 2012===
+  * Fix for [http://code.google.com/p/gwt-earth-3/issues/detail?id=12 Issue 12 - Can not display 2 GoogleEarthWidgets]
+This release contains a fix for the critical issue where it was not possible to display 2 or more {{{GoogleEarthWidget}}} instances without chaining their {{{onInitSuccess()}}} methods. 
+
+  * The ID of the DIV that contains the GE plugin is now exposed via the new method: {{{GoogleEarthWidget::getContainerId();}}}
+
+  * {{{GoogleEarthWidget::onInitSuccess()}}} and {{{GoogleEarthWidget::onInitFailure()}}} are now exposed as protected methods.
+
+  * {{{GoogleEarthWidget::pluginReadyListeners}}} is now exposed as a protected member variable.
+----
 ==3.09==
 ===Released: May 11, 2012===
   * Minor updates eliminating the need to provide an API key when loading the Google Earth API:
